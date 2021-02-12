@@ -4,6 +4,7 @@ gradle/wrapper/gradle-wrapper.properties
 .gradle/6.7.1/executionHistory/executionHistory.lock
 /local.properties
 /build
+/android/build/
 /common/build/
 /controller/build/
 /domain/build/
