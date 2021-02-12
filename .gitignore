@@ -1,6 +1,7 @@
 *.iml
 /.gradle/
 gradle/wrapper/gradle-wrapper.properties
+.gradle/6.7.1/executionHistory/executionHistory.lock
 /local.properties
 /build
 /common/build/
