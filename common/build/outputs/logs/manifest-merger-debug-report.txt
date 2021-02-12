@@ -1,0 +1,25 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml:2:1-99
+INJECTED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml:2:1-99
+INJECTED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml:2:1-99
+	package
+		ADDED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml:2:70-97
+		INJECTED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml
+		INJECTED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml:2:11-69
+uses-sdk
+INJECTED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml
+INJECTED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml
+INJECTED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml
+INJECTED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml
+		ADDED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml
+		INJECTED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml
+		ADDED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml
+		INJECTED from /home/vbytsyuk/Git/pomplan-io/common/src/androidMain/AndroidManifest.xml

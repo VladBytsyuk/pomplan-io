@@ -1,0 +1,12 @@
+*.iml
+.gradle
+gradle/wrapper/gradle-wrapper.properties
+/local.properties
+/.idea/*
+.DS_Store
+/build
+/captures
+app/fabric.properties
+
+!/.idea/codeStyles/*
+!/.idea/inspectionProfiles/*

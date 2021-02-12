@@ -1,0 +1,2 @@
+io/pomplan/common/BuildConfig.java
+ io.pomplan.common.BuildConfig
