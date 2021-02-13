@@ -18,8 +18,8 @@ class Controller : Elm.Controller<State, Action, Effect> by Elm.ControllerImpl(
     ),
     initialAction = Action.Initial,
     effectHandler = EffectHandler(
-        logger = TODO(),
-        timer = Timer { TODO() },
+        logger = LoggerImpl(),
+        timer = Timer { setAction(Action.TimerTick) },
     ),
     reducer = Reducer(),
     converterFactory = ViewDataConverterFactory(),

@@ -1,4 +1,7 @@
 package io.pomplan.common
 
-class StateModificationTest {
-}
+import io.kotest.core.spec.style.ShouldSpec
+
+class StateModificationTest : ShouldSpec({
+    context(name = "")
+})

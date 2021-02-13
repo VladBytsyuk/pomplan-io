@@ -14,6 +14,7 @@ repositories {
     google()
 }
 
+
 kotlin {
     android()
     jvm("desktop") {
@@ -29,7 +30,14 @@ kotlin {
                 api(compose.material)
             }
         }
-        val commonTest by getting
+        val commonTest by getting {
+            dependencies {
+                val kotestVersion = "4.4.1"
+                implementation("io.kotest:kotest-framework-engine:$kotestVersion")
+                implementation("io.kotest:kotest-assertions-core:$kotestVersion")
+                implementation("io.kotest:kotest-property:$kotestVersion")
+            }
+        }
         val androidMain by getting {
             dependencies {
                 api("androidx.appcompat:appcompat:1.2.0")
