@@ -1,10 +1,11 @@
 package io.pomplan.common.domain
 
 
-data class Timer(
+data class Pomodoro(
     val mode: Mode,
     val goalTime: Time,
     val elapsedTime: Time,
+    val currentPomodoro: Int
 ) {
     enum class Mode { PRE_WORK, WORK, PRE_BREAK, BREAK }
 }

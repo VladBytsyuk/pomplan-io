@@ -1,8 +1,8 @@
 package io.pomplan.common.elm
 
-import io.pomplan.common.domain.Timer
+import io.pomplan.common.domain.Pomodoro
 
 
 data class State(
-    val timer: Timer,
+    val pomodoro: Pomodoro,
 ) : Elm.State
