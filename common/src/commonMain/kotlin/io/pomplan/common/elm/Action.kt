@@ -10,4 +10,6 @@ sealed class Action : Elm.Action {
             object Skip : Button()
         }
     }
+
+    object TimerTick : Action()
 }
