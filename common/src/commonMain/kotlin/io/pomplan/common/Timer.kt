@@ -4,7 +4,7 @@ import io.pomplan.common.domain.second
 import kotlinx.coroutines.*
 
 
-class Timer(
+open class Timer(
     private val tick: () -> Unit
 ) {
     private val scope = CoroutineScope(Dispatchers.Default)

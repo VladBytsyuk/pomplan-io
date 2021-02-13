@@ -14,6 +14,12 @@ repositories {
     google()
 }
 
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
 
 kotlin {
     android()
@@ -28,10 +34,14 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
+                implementation("org.kodein.di:kodein-di:7.3.0")
             }
         }
         val commonTest by getting {
             dependencies {
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
+
                 val kotestVersion = "4.4.1"
                 implementation("io.kotest:kotest-framework-engine:$kotestVersion")
                 implementation("io.kotest:kotest-assertions-core:$kotestVersion")
