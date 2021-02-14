@@ -2,15 +2,11 @@
 /.gradle/
 gradle/wrapper/gradle-wrapper.properties
 .gradle/6.7.1/executionHistory/executionHistory.lock
-/local.properties
+local.properties
 /build
 /android/build/
 /common/build/
-/controller/build/
-/domain/build/
-/parser/build/
-/ui/build/
-/usecases/build/
+/desktop/build
 /captures
 /.idea/*
 
