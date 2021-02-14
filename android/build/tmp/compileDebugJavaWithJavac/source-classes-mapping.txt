@@ -1,2 +1,0 @@
-io/pomplan/android/BuildConfig.java
- io.pomplan.android.BuildConfig
