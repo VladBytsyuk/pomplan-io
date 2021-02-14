@@ -4,14 +4,15 @@ import io.pomplan.common.elm.*
 import org.kodein.di.*
 
 
-val container = DI.lazy { import(coreModule) }
+val kodein get() = container.direct
 
-private val coreModule = DI.Module("core") {
-    bind<Logger>() with factory { LoggerImpl() }
-    bind<Elm.Controller<State, Action, Effect>>() with singleton {
-        Controller(logger = instance(), pomodoroTimer = instance())
+private val container = DI.lazy { import(coreModule) }
+
+private val coreModule = DI.Module(name = "core") {
+    bind<Logger>() with provider { LoggerImpl() }
+    bind<Timer>() with provider { Timer() }
+    bind<Controller>() with singleton {
+        Controller(logger = instance(), timer = instance())
+            .apply { timer.tick = { setAction(Action.TimerTick) } }
     }
-    bind<PomodoroTimer>() with factory { PomodoroTimer(controller = instance()) }
 }
-
-inline fun <reified T> inject(): T = container.direct.instance()

@@ -5,7 +5,7 @@ import kotlinx.coroutines.*
 
 
 open class Timer(
-    private val tick: () -> Unit
+    var tick: () -> Unit = { /* do nothing */ }
 ) {
     private val scope = CoroutineScope(Dispatchers.Default)
     private var job: Job? = null

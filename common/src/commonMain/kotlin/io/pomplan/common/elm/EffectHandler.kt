@@ -1,12 +1,12 @@
 package io.pomplan.common.elm
 
 import io.pomplan.common.Logger
-import io.pomplan.common.PomodoroTimer
+import io.pomplan.common.Timer
 
 
 class EffectHandler (
     private val logger: Logger,
-    private val timer: PomodoroTimer,
+    private val timer: Timer,
 ): Elm.EffectHandler<Effect, Action> {
     override suspend fun handle(effect: Effect): Action? = when (effect) {
         is Effect.IllegalState -> {
