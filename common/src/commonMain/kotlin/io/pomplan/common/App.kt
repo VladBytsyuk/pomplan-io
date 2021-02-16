@@ -1,18 +1,15 @@
 package io.pomplan.common
-import androidx.compose.material.Text
-import androidx.compose.material.Button
+
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
+import io.pomplan.common.ui.Theme
+import io.pomplan.common.ui.TimerView
+
 
 @Composable
 fun App() {
-    var text by remember { mutableStateOf("Hello, World!") }
 
     MaterialTheme {
-        Button(onClick = {
-            text = "Hello, ${getPlatformName()}"
-        }) {
-            Text(text)
-        }
+        TimerView(theme = Theme.Light)
     }
 }
