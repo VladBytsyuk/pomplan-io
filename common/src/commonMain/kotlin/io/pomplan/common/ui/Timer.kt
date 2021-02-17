@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.Color
 
 
 @Composable
-fun TimerView(theme: Theme) = Text(
-    text = "12:34",
+fun TimerView(theme: Theme, text: String) = Text(
+    text = text,
     color = Color(theme.colors.textPrimary)
 )

@@ -71,7 +71,7 @@ interface Elm {
             actionScope.launch { actionFlow.emit(action) }
         }
 
-        private val stateScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
+        private val stateScope: CoroutineScope = CoroutineScope(Dispatchers.Default)
         private val subscribers: MutableMap<Any, Job> = hashMapOf()
         override fun <VD : ViewData> subscribeOnState(
             subscriber: String,
