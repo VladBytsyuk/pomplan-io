@@ -5,7 +5,7 @@ import org.kodein.di.*
 
 
 val kodein get() = container.direct
-inline fun <reified T> inject(): T = kodein.instance()
+inline fun <reified T> inject(): Lazy<T> = lazy { kodein.instance() }
 
 private val container = DI.lazy { import(coreModule) }
 
