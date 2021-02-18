@@ -5,7 +5,7 @@ import kotlinx.coroutines.*
 
 
 open class Timer(
-    var tick: () -> Unit = { /* do nothing */ }
+    var tickAction: () -> Unit = { /* do nothing */ }
 ) {
     private val scope = CoroutineScope(Dispatchers.Default)
     private var job: Job? = null
@@ -14,7 +14,7 @@ open class Timer(
         job = scope.launch {
             while (isActive) {
                 delay(1.second)
-                tick()
+                tickAction()
             }
         }
     }

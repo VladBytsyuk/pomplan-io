@@ -13,5 +13,5 @@ sealed class Action : Elm.Action {
         }
     }
 
-    object TimerTick : Action()
+    class TimerTick : Action()
 }

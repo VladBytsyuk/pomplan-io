@@ -5,6 +5,7 @@ import org.kodein.di.*
 
 
 val kodein get() = container.direct
+inline fun <reified T> inject(): T = kodein.instance()
 
 private val container = DI.lazy { import(coreModule) }
 
@@ -13,6 +14,6 @@ private val coreModule = DI.Module(name = "core") {
     bind<Timer>() with provider { Timer() }
     bind<Controller>() with singleton {
         Controller(logger = instance(), timer = instance())
-            .apply { timer.tick = { setAction(Action.TimerTick) } }
+            .apply { timer.tickAction = { setAction(Action.TimerTick()) } }
     }
 }

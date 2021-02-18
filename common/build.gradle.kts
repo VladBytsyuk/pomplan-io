@@ -1,8 +1,5 @@
-import org.jetbrains.compose.compose
-
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose") version "0.2.0-build132"
     id("com.android.library")
     id("kotlin-android-extensions")
 }
@@ -10,14 +7,10 @@ plugins {
 group = "io.pomplan"
 version = "0.1"
 
-repositories {
-    google()
-}
+repositories { google() }
 
 buildscript {
-    repositories {
-        jcenter()
-    }
+    repositories { jcenter() }
 }
 
 
@@ -31,10 +24,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(compose.runtime)
-                api(compose.foundation)
-                api(compose.material)
                 implementation("org.kodein.di:kodein-di:7.3.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
             }
         }
         val androidMain by getting {
@@ -60,4 +51,9 @@ android {
         minSdkVersion(24)
         targetSdkVersion(29)
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> { kotlinOptions.jvmTarget = "1.8" }

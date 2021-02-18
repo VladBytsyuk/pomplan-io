@@ -14,13 +14,13 @@ class Reducer : Elm.Reducer<State, Action, Effect> {
         Stop,
         Skip -> true
         Play -> state.pomodoro.mode in listOf(PRE_WORK, PRE_BREAK)
-        TimerTick, Pause -> state.pomodoro.mode in listOf(WORK, BREAK)
+        is TimerTick, Pause -> state.pomodoro.mode in listOf(WORK, BREAK)
     }
 
     override fun reduceValid(state: State, action: Action): Pair<State, Effect?> = when (action) {
         Initial -> state to null
         is UserClick.Button -> reduceValid(state, action)
-        TimerTick -> state.tick() to null
+        is TimerTick -> state.tick() to null
     }
 
 
