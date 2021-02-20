@@ -1,10 +1,12 @@
-package io.pomplan.desktop
+package io.pomplan.android
 
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 import io.pomplan.common.domain.Pomodoro
 import io.pomplan.common.domain.Pomodoro.Mode.*
 import io.pomplan.common.domain.Time
+import io.pomplan.common.domain.shortBreakTime
+import io.pomplan.common.domain.workTime
 import io.pomplan.common.elm.*
 
 
@@ -18,8 +20,8 @@ class StateModificationTest : ShouldSpec({
             initialState.playPomodoro() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = WORK,
-                    goalTime = Time(minute = 25),
-                    elapsedTime = Time(minute = 25),
+                    goalTime = workTime,
+                    elapsedTime = workTime,
                     lastDoneNumber = 0
                 )
             )
@@ -28,8 +30,8 @@ class StateModificationTest : ShouldSpec({
             initialState.skipPomodoro() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = PRE_BREAK,
-                    goalTime = Time(minute = 5),
-                    elapsedTime = Time(minute = 5),
+                    goalTime = shortBreakTime,
+                    elapsedTime = shortBreakTime,
                     lastDoneNumber = 1
                 )
             )
@@ -39,8 +41,8 @@ class StateModificationTest : ShouldSpec({
         val workState = State(
             pomodoro = Pomodoro(
                 mode = WORK,
-                goalTime = Time(minute = 25),
-                elapsedTime = Time(minute = 24, second = 15),
+                goalTime = workTime,
+                elapsedTime = Time(workTime.milliseconds - 15_000),
                 lastDoneNumber = 0
             )
         )
@@ -48,8 +50,8 @@ class StateModificationTest : ShouldSpec({
             workState.pausePomodoro() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = PRE_WORK,
-                    goalTime = Time(minute = 25),
-                    elapsedTime = Time(minute = 24, second = 15),
+                    goalTime = workTime,
+                    elapsedTime = Time(workTime.milliseconds - 15_000),
                     lastDoneNumber = 0
                 )
             )
@@ -58,8 +60,8 @@ class StateModificationTest : ShouldSpec({
             workState.stopPomodoro() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = PRE_WORK,
-                    goalTime = Time(minute = 25),
-                    elapsedTime = Time(minute = 25),
+                    goalTime = workTime,
+                    elapsedTime = workTime,
                     lastDoneNumber = 0
                 )
             )
@@ -68,8 +70,8 @@ class StateModificationTest : ShouldSpec({
             workState.tick() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = WORK,
-                    goalTime = Time(minute = 25),
-                    elapsedTime = Time(minute = 24, second = 14),
+                    goalTime = workTime,
+                    elapsedTime = Time(workTime.milliseconds - 16_000),
                     lastDoneNumber = 0
                 )
             )
@@ -79,8 +81,8 @@ class StateModificationTest : ShouldSpec({
             workState.skipPomodoro() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = PRE_BREAK,
-                    goalTime = Time(minute = 5),
-                    elapsedTime = Time(minute = 5),
+                    goalTime = shortBreakTime,
+                    elapsedTime = shortBreakTime,
                     lastDoneNumber = 1
                 )
             )

@@ -15,6 +15,12 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+
+
+    val kotestVersion = "4.4.1"
+    testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
+    testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
+    testImplementation("io.kotest:kotest-property:$kotestVersion")
 }
 
 android {
