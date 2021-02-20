@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="PomPlan"/>
+
+    <style name="PomPlan.Light" parent="PomPlan">
+        <item name="android:background">@color/white_light</item>
+        <item name="android:textColor">@color/black_light</item>
+        <item name="android:colorAccent">@color/red_light</item>
+        <item name="colorButtonNormal">@color/red_light</item>
+    </style>
+
+    <style name="PomPlan.Dark" parent="PomPlan">
+        <item name="android:background">@color/black_dark</item>
+        <item name="android:textColor">@color/white_dark</item>
+        <item name="android:colorAccent">@color/red_dark</item>
+        <item name="colorButtonNormal">@color/red_dark</item>
+    </style>
+</resources>
