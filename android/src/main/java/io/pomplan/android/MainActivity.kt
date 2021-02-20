@@ -47,7 +47,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun render(data: State) {
         val pomodoro = data.pomodoro
-        findViewById<TextView>(R.id.timerText).text = pomodoro.elapsedTime.toString()
+        findViewById<TextView>(R.id.timerMinutes).text = pomodoro.elapsedTime.minute
+            .let { if (it.toString().length == 1) "0$it" else it.toString() }
+        findViewById<TextView>(R.id.timerSeconds).text = pomodoro.elapsedTime.seconds
+            .let { if (it.toString().length == 1) "0$it" else it.toString() }
         findViewById<Button>(R.id.btnPlayPause).text =
             if (pomodoro.mode in listOf(PRE_WORK, PRE_BREAK)) "Play" else "Pause"
     }

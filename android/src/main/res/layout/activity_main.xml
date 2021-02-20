@@ -9,15 +9,35 @@
     >
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/timerText"
+        android:id="@+id/timerMinutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="12:34"
+        tools:text="12"
+        android:theme="@style/Font.Timer"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/timerSeparator"
+        app:layout_constraintBaseline_toBaselineOf="@+id/timerSeparator"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/timerSeparator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=":"
         android:theme="@style/Font.Timer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/timerSeconds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="34"
+        android:theme="@style/Font.Timer"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toEndOf="@+id/timerSeparator"
+        app:layout_constraintBaseline_toBaselineOf="@+id/timerSeparator"
         />
 
     <androidx.appcompat.widget.AppCompatButton
