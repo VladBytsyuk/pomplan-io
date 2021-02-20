@@ -37,6 +37,12 @@ class MainActivity : AppCompatActivity() {
                 Action.UserClick.Button.Play else Action.UserClick.Button.Pause
             controller.setAction(action)
         }
+        findViewById<Button>(R.id.btnStop).setOnClickListener {
+            controller.setAction(Action.UserClick.Button.Stop())
+        }
+        findViewById<Button>(R.id.btnSkip).setOnClickListener {
+            controller.setAction(Action.UserClick.Button.Skip())
+        }
     }
 
     private fun render(data: State) {

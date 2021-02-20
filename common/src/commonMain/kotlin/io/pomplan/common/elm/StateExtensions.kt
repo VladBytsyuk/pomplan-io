@@ -5,9 +5,8 @@ import io.pomplan.common.domain.Pomodoro.Mode.*
 
 
 fun State.stopPomodoro(): State = when (pomodoro.mode) {
-    PRE_WORK, PRE_BREAK -> this
-    WORK -> updatePomodoro(mode = PRE_WORK, elapsedTime = pomodoro.goalTime)
-    BREAK -> updatePomodoro(mode = PRE_BREAK, elapsedTime = pomodoro.goalTime)
+    PRE_WORK, WORK -> updatePomodoro(mode = PRE_WORK, elapsedTime = pomodoro.goalTime)
+    PRE_BREAK, BREAK -> updatePomodoro(mode = PRE_BREAK, elapsedTime = pomodoro.goalTime)
 }
 
 fun State.skipPomodoro(): State = when (pomodoro.mode) {
