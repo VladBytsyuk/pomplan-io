@@ -12,6 +12,8 @@ repositories {
 
 dependencies {
     implementation(project(":common"))
+    implementation(project(":android:ui_kit"))
+
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")

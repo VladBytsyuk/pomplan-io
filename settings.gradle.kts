@@ -1,3 +1,4 @@
+include(":android:ui_kit")
 pluginManagement {
     repositories {
         google()
