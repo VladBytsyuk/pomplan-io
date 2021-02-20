@@ -1,9 +1,9 @@
 package io.pomplan.common.domain
 
 
-val workTime = Time(second = 25)
-val shortBreakTime = Time(second = 5)
-val longBreakTime = Time(second = 15)
+val workTime = Time(minute = 25)
+val shortBreakTime = Time(minute = 5)
+val longBreakTime = Time(minute = 15)
 val groupSize = 4
 
 data class Pomodoro(

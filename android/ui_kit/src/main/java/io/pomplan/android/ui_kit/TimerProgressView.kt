@@ -14,6 +14,10 @@ class TimerProgressView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
+    private val stroke = context.resources.getDimension(R.dimen.timer_progress_stroke_width)
+    private val workColor = ContextCompat.getColor(context, R.color.red_dark)
+    private val breakColor = ContextCompat.getColor(context, R.color.grey_dark)
+
     data class Data(val goal: Long, val elapsed: Long, val isWork: Boolean) {
         init { require(goal > 0) }
     }
@@ -23,7 +27,8 @@ class TimerProgressView @JvmOverloads constructor(
     var data: Data = Data(goal = 1, elapsed = 1, isWork = false)
         set(value) {
             field = value
-            angle =  360f * value.elapsed / value.goal
+            angle = (360f * value.elapsed / value.goal).let { if (value.isWork) -it else it - 360 }
+            invalidate()
         }
 
 
@@ -31,22 +36,22 @@ class TimerProgressView @JvmOverloads constructor(
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
         if (changed) {
-            oval.left = 0f
-            oval.top = 0f
-            oval.right = width.toFloat()
-            oval.bottom = height.toFloat()
+            val shift = stroke / 2
+            oval.left = shift
+            oval.top = shift
+            oval.right = width - shift
+            oval.bottom = height - shift
         }
     }
 
     private val accentPaint = Paint()
         .apply { style = Paint.Style.STROKE }
-        .apply { strokeWidth = 4f }
+        .apply { strokeWidth = stroke  }
+
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         canvas ?: return
-        accentPaint.color = (if (data.isWork) R.color.red_dark else R.color.grey_dark)
-            .let { ContextCompat.getColor(context, it) }
-        val startAngle = if (data.isWork) -90f else angle - 450
-        canvas.drawArc(oval, startAngle, angle, false, accentPaint)
+        accentPaint.color = if (data.isWork) workColor else breakColor
+        canvas.drawArc(oval, -90f, angle, false, accentPaint)
     }
 }

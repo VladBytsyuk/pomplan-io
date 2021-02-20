@@ -40,6 +40,16 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/timerSeparator"
         />
 
+    <io.pomplan.android.ui_kit.TimerProgressView android:id="@+id/timerProgress"
+        android:layout_width="288dp"
+        android:layout_height="288dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintStart_toStartOf="@+id/timerSeparator"
+        app:layout_constraintTop_toTopOf="@+id/timerSeparator"
+        app:layout_constraintEnd_toEndOf="@+id/timerSeparator"
+        app:layout_constraintBottom_toBottomOf="@+id/timerSeparator"
+        />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnStop"
         android:layout_width="wrap_content"

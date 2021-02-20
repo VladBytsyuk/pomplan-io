@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import io.pomplan.android.ui_kit.TimerProgressView
 import io.pomplan.common.domain.Pomodoro.Mode.*
 import io.pomplan.common.elm.Action
 import io.pomplan.common.elm.Controller
@@ -47,6 +48,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun render(data: State) {
         val pomodoro = data.pomodoro
+        findViewById<TimerProgressView>(R.id.timerProgress).data = TimerProgressView.Data(
+            goal = pomodoro.goalTime.milliseconds,
+            elapsed = pomodoro.elapsedTime.milliseconds,
+            isWork = pomodoro.mode in listOf(WORK, PRE_WORK)
+        )
         findViewById<TextView>(R.id.timerMinutes).text = pomodoro.elapsedTime.minute
             .let { if (it.toString().length == 1) "0$it" else it.toString() }
         findViewById<TextView>(R.id.timerSeconds).text = pomodoro.elapsedTime.seconds
