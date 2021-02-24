@@ -13,7 +13,7 @@ sealed class Theme {
     }
 }
 
-typealias ColorValue = Long
+typealias ColorValue = String
 sealed class Colors {
     abstract val cyan: ColorValue
     abstract val violet: ColorValue
@@ -27,35 +27,38 @@ sealed class Colors {
     abstract val black: ColorValue
 
     abstract val textPrimary: ColorValue
+    abstract val background: ColorValue
 
     object Light : Colors() {
-        override val cyan: ColorValue = 0xFF00A8FF
-        override val violet: ColorValue = 0xFF9C88FF
-        override val yellow: ColorValue = 0xFFFBC531
-        override val green: ColorValue = 0xFF4CD137
-        override val greyBlue: ColorValue = 0xFF487EB0
-        override val red: ColorValue = 0xFFE84118
-        override val white: ColorValue = 0xFFF5F6FA
-        override val grey: ColorValue = 0xFF7F8FA6
-        override val blue: ColorValue = 0xFF273C75
-        override val black: ColorValue = 0xFF353B48
+        override val cyan: ColorValue = "00A8FF"
+        override val violet: ColorValue = "9C88FF"
+        override val yellow: ColorValue = "FBC531"
+        override val green: ColorValue = "4CD137"
+        override val greyBlue: ColorValue = "487EB0"
+        override val red: ColorValue = "E84118"
+        override val white: ColorValue = "F5F6FA"
+        override val grey: ColorValue = "7F8FA6"
+        override val blue: ColorValue = "273C75"
+        override val black: ColorValue = "353B48"
 
         override val textPrimary: ColorValue = black
+        override val background: ColorValue = white
     }
 
     object Dark : Colors() {
-        override val cyan: ColorValue = 0xFF0097E6
-        override val violet: ColorValue = 0xFF8C7AE6
-        override val yellow: ColorValue = 0xFFE1B12C
-        override val green: ColorValue = 0xFF44BD32
-        override val greyBlue: ColorValue = 0xFF40739E
-        override val red: ColorValue = 0xFFC23616
-        override val white: ColorValue = 0xFFDCDDE1
-        override val grey: ColorValue = 0xFF718093
-        override val blue: ColorValue = 0xFF192A56
-        override val black: ColorValue = 0xFF2F3640
+        override val cyan: ColorValue = "0097E6"
+        override val violet: ColorValue = "8C7AE6"
+        override val yellow: ColorValue = "E1B12C"
+        override val green: ColorValue = "44BD32"
+        override val greyBlue: ColorValue = "40739E"
+        override val red: ColorValue = "C23616"
+        override val white: ColorValue = "DCDDE1"
+        override val grey: ColorValue = "718093"
+        override val blue: ColorValue = "192A56"
+        override val black: ColorValue = "2F3640"
 
         override val textPrimary: ColorValue = white
+        override val background: ColorValue = black
     }
 }
 
