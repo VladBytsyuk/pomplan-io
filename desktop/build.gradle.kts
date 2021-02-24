@@ -7,6 +7,10 @@ tasks.withType<Test> { useJUnitPlatform() }
 group = "io.pomplan"
 version = "0.1"
 
+repositories {
+    mavenCentral()
+}
+
 kotlin {
     jvm {
         compilations.all {
@@ -17,6 +21,7 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation(project(":common"))
+                implementation("no.tornado:tornadofx:1.7.20")
             }
         }
         val jvmTest by getting {
