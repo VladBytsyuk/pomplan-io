@@ -1,7 +1,7 @@
 package io.pomplan.android
 
 import android.os.Bundle
-import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import io.pomplan.android.ui_kit.TimerProgressView
@@ -33,15 +33,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setOnClickListeners() {
-        findViewById<Button>(R.id.btnPlayPause).setOnClickListener {
+        findViewById<ImageView>(R.id.btnPlayPause).setOnClickListener {
             val action = if (controller.currentState.pomodoro.mode in listOf(PRE_WORK, PRE_BREAK))
                 Action.UserClick.Button.Play else Action.UserClick.Button.Pause
             controller.setAction(action)
         }
-        findViewById<Button>(R.id.btnStop).setOnClickListener {
+        findViewById<ImageView>(R.id.btnStop).setOnClickListener {
             controller.setAction(Action.UserClick.Button.Stop())
         }
-        findViewById<Button>(R.id.btnSkip).setOnClickListener {
+        findViewById<ImageView>(R.id.btnSkip).setOnClickListener {
             controller.setAction(Action.UserClick.Button.Skip())
         }
     }
@@ -57,7 +57,8 @@ class MainActivity : AppCompatActivity() {
             .let { if (it.toString().length == 1) "0$it" else it.toString() }
         findViewById<TextView>(R.id.timerSeconds).text = pomodoro.elapsedTime.seconds
             .let { if (it.toString().length == 1) "0$it" else it.toString() }
-        findViewById<Button>(R.id.btnPlayPause).text =
-            if (pomodoro.mode in listOf(PRE_WORK, PRE_BREAK)) "Play" else "Pause"
+        findViewById<ImageView>(R.id.btnPlayPause).setImageResource(
+            if (pomodoro.mode in listOf(PRE_WORK, PRE_BREAK)) R.drawable.ic_play else R.drawable.ic_pause
+        )
     }
 }

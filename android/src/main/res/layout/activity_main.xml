@@ -18,6 +18,7 @@
         app:layout_constraintEnd_toStartOf="@+id/timerSeparator"
         app:layout_constraintBaseline_toBaselineOf="@+id/timerSeparator"
         />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/timerSeparator"
         android:layout_width="wrap_content"
@@ -29,6 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/timerSeconds"
         android:layout_width="wrap_content"
@@ -40,7 +42,8 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/timerSeparator"
         />
 
-    <io.pomplan.android.ui_kit.TimerProgressView android:id="@+id/timerProgress"
+    <io.pomplan.android.ui_kit.TimerProgressView
+        android:id="@+id/timerProgress"
         android:layout_width="288dp"
         android:layout_height="288dp"
         android:background="@android:color/transparent"
@@ -50,32 +53,44 @@
         app:layout_constraintBottom_toBottomOf="@+id/timerSeparator"
         />
 
-    <androidx.appcompat.widget.AppCompatButton
+
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btnStop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stop"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="16dp"
+        android:tint="@color/white_dark"
+        app:srcCompat="@drawable/ic_stop"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnPlayPause"
         app:layout_constraintEnd_toStartOf="@+id/btnPlayPause"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintBottom_toBottomOf="@+id/btnPlayPause"
+        app:layout_constraintHorizontal_chainStyle="packed"
+    />
 
-    <androidx.appcompat.widget.AppCompatButton
+
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btnPlayPause"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="98dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="32dp"
+        android:tint="@color/white_dark"
+        app:srcCompat="@drawable/ic_play"
         app:layout_constraintStart_toEndOf="@+id/btnStop"
+        app:layout_constraintTop_toBottomOf="@+id/timerProgress"
         app:layout_constraintEnd_toStartOf="@+id/btnSkip"
-        app:layout_constraintBottom_toBottomOf="parent"
         />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btnSkip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Skip"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="16dp"
+        android:tint="@color/white_dark"
+        app:srcCompat="@drawable/ic_skip"
         app:layout_constraintStart_toEndOf="@+id/btnPlayPause"
+        app:layout_constraintTop_toTopOf="@+id/btnPlayPause"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/btnPlayPause"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
