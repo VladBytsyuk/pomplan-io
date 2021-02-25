@@ -1,0 +1,27 @@
+package io.pomplan.desktop
+
+import io.pomplan.common.domain.Pomodoro.Mode.*
+import io.pomplan.common.elm.Action
+import io.pomplan.common.ui.Theme
+import javafx.scene.Parent
+import tornadofx.action
+import tornadofx.button
+import tornadofx.hbox
+
+
+fun Parent.buttonsView(controller: PomPlanController, theme: Theme) = hbox {
+    button("Stop") {
+        action { controller.setAction(Action.UserClick.Button.Stop()) }
+    }
+    button(controller.playPauseText) {
+        action {
+            val action =
+                if (controller.mode.value in listOf(PRE_WORK, PRE_BREAK)) Action.UserClick.Button.Play
+                else Action.UserClick.Button.Pause
+            controller.setAction(action)
+        }
+    }
+    button("Skip") {
+        action { controller.setAction(Action.UserClick.Button.Skip()) }
+    }
+}
