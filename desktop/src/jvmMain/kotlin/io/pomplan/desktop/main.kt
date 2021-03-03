@@ -13,16 +13,17 @@ import tornadofx.*
 
 fun main() = launch<PomPlanApp>()
 
-class PomPlanApp : App(MainScreen::class) {
+class PomPlanApp : App(MainScreen::class, PomPlanStylesheet::class) {
+    init { reloadStylesheetsOnFocus() }
+
     class MainScreen() : View() {
         private val controller: PomPlanController by inject()
 
-        val theme = Theme.Dark
         override val root = stackpane {
-            backgroundView(width = 360, height = 560, theme)
+            backgroundView(width = 360, height = 560)
             vbox {
-                timerView(controller, theme)
-                buttonsView(controller, theme)
+                timerView(controller)
+                buttonsView(controller)
             }
         }
     }
@@ -33,7 +34,8 @@ class PomPlanController : tornadofx.Controller() {
 
     fun setAction(action: Action) = controller.setAction(action)
 
-    val elapsedTime = SimpleObjectProperty("")
+    val elapsedTimeMinutes = SimpleObjectProperty("")
+    val elapsedTimeSeconds = SimpleObjectProperty("")
     val mode = SimpleObjectProperty(PRE_WORK)
     val playPauseText = SimpleObjectProperty("")
 
@@ -45,7 +47,8 @@ class PomPlanController : tornadofx.Controller() {
     }
 
     private fun render(state: State) {
-        elapsedTime.set(state.pomodoro.elapsedTime.toString())
+        elapsedTimeMinutes.set(state.pomodoro.elapsedTime.minuteString)
+        elapsedTimeSeconds.set(state.pomodoro.elapsedTime.secondsString)
         mode.set(state.pomodoro.mode)
         playPauseText.set(if (state.pomodoro.mode in listOf(PRE_WORK, PRE_BREAK)) "Play" else "Pause")
     }

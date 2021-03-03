@@ -1,13 +1,13 @@
 package io.pomplan.desktop
 
-import io.pomplan.common.ui.Theme
+import javafx.geometry.Pos
 import javafx.scene.Parent
-import javafx.scene.control.Label
-import javafx.scene.paint.Color
 import tornadofx.*
 
 
-fun Parent.timerView(controller: PomPlanController, theme: Theme): Label =
-    label(controller.elapsedTime) {
-        style { textFill = Color.web(theme.colors.textPrimary) }
-    }
+fun Parent.timerView(controller: PomPlanController) = hbox(spacing = 8, alignment = Pos.CENTER) {
+    label(controller.elapsedTimeMinutes)
+    label(text = ":")
+    label(controller.elapsedTimeSeconds)
+    children.addClass(PomPlanStylesheet.timerText)
+}

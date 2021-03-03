@@ -28,11 +28,10 @@ data class Time(val milliseconds: Long = 0) : Comparable<Long>{
 
     val minute: Int = (milliseconds / MILLIS_IN_MINUTE).toInt()
     val seconds: Int = (milliseconds % MILLIS_IN_MINUTE / MILLIS_IN_SECOND).toInt()
-    override fun toString(): String {
-        val m = if (minute.toString().length == 1) "0$minute" else minute.toString()
-        val s = if (seconds.toString().length == 1) "0$seconds" else seconds.toString()
-        return "$m:$s"
-    }
+    override fun toString(): String = "$minuteString:$secondsString"
+
+    val minuteString: String get() = if (minute.toString().length == 1) "0$minute" else minute.toString()
+    val secondsString: String get() = if (seconds.toString().length == 1) "0$seconds" else seconds.toString()
 
     val isZero: Boolean = milliseconds == 0L
 

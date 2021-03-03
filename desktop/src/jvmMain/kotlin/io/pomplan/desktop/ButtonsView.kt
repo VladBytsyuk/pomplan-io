@@ -2,14 +2,14 @@ package io.pomplan.desktop
 
 import io.pomplan.common.domain.Pomodoro.Mode.*
 import io.pomplan.common.elm.Action
-import io.pomplan.common.ui.Theme
 import javafx.scene.Parent
 import tornadofx.action
+import tornadofx.addClass
 import tornadofx.button
 import tornadofx.hbox
 
 
-fun Parent.buttonsView(controller: PomPlanController, theme: Theme) = hbox {
+fun Parent.buttonsView(controller: PomPlanController) = hbox {
     button("Stop") {
         action { controller.setAction(Action.UserClick.Button.Stop()) }
     }
@@ -24,4 +24,5 @@ fun Parent.buttonsView(controller: PomPlanController, theme: Theme) = hbox {
     button("Skip") {
         action { controller.setAction(Action.UserClick.Button.Skip()) }
     }
+    children.addClass(PomPlanStylesheet.actionButton)
 }
