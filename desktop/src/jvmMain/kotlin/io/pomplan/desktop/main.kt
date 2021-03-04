@@ -56,13 +56,14 @@ class PomPlanController : tornadofx.Controller() {
         this.elapsedTimeSeconds.set(elapsedTime.secondsString)
         this.mode.set(mode)
         this.playPauseText.set(if (mode in listOf(PRE_WORK, PRE_BREAK)) "Play" else "Pause")
+
+        val workArcAngle = 360.0 * elapsedTime.milliseconds / goalTime.milliseconds
         val arcAngle = when (mode) {
-            PRE_WORK, WORK ->
-                elapsedTime.milliseconds.toDouble() / goalTime.milliseconds.toDouble() * 360.0
-            PRE_BREAK, BREAK ->
-                360 - elapsedTime.milliseconds.toDouble() / goalTime.milliseconds.toDouble() * 360.0
+            PRE_WORK, WORK -> workArcAngle
+            PRE_BREAK, BREAK -> 360 - workArcAngle
         }
         this.angle.set(arcAngle)
+
         val arcColor = when (mode) {
             PRE_WORK, WORK -> c(PomPlanStylesheet.theme.colors.red)
             PRE_BREAK, BREAK -> c(PomPlanStylesheet.theme.colors.grey)
