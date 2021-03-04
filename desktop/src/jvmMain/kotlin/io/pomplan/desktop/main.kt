@@ -1,6 +1,8 @@
 package io.pomplan.desktop
 
+import io.pomplan.common.domain.Pomodoro
 import io.pomplan.common.domain.Pomodoro.Mode.*
+import io.pomplan.common.domain.Time
 import io.pomplan.common.elm.*
 import io.pomplan.common.elm.Controller
 import javafx.application.Platform
@@ -52,11 +54,21 @@ class PomPlanController : tornadofx.Controller() {
         val elapsedTime = state.pomodoro.elapsedTime
         val goalTime = state.pomodoro.goalTime
 
+        renderTimer(mode, elapsedTime, goalTime)
+        renderButtons(mode)
+    }
+
+    private fun renderTimer(mode: Pomodoro.Mode, elapsedTime: Time, goalTime: Time) {
+        renderTimerText(elapsedTime)
+        renderTimerArc(mode, elapsedTime, goalTime)
+    }
+
+    private fun renderTimerText(elapsedTime: Time) {
         this.elapsedTimeMinutes.set(elapsedTime.minuteString)
         this.elapsedTimeSeconds.set(elapsedTime.secondsString)
-        this.mode.set(mode)
-        this.playPauseText.set(if (mode in listOf(PRE_WORK, PRE_BREAK)) "Play" else "Pause")
+    }
 
+    private fun renderTimerArc(mode: Pomodoro.Mode, elapsedTime: Time, goalTime: Time) {
         val workArcAngle = 360.0 * elapsedTime.milliseconds / goalTime.milliseconds
         val arcAngle = when (mode) {
             PRE_WORK, WORK -> workArcAngle
@@ -69,5 +81,10 @@ class PomPlanController : tornadofx.Controller() {
             PRE_BREAK, BREAK -> c(PomPlanStylesheet.theme.colors.grey)
         }
         this.progressArcColor.set(arcColor)
+    }
+
+    private fun renderButtons(mode: Pomodoro.Mode) {
+        this.mode.set(mode)
+        this.playPauseText.set(if (mode in listOf(PRE_WORK, PRE_BREAK)) "Play" else "Pause")
     }
 }

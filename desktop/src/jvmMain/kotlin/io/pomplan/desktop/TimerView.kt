@@ -1,6 +1,5 @@
 package io.pomplan.desktop
 
-import io.pomplan.common.ui.Theme
 import javafx.geometry.Pos
 import javafx.scene.Parent
 import javafx.scene.shape.*
@@ -8,7 +7,7 @@ import tornadofx.*
 
 
 fun Parent.timerView(controller: PomPlanController) = stackpane {
-    timerProgress(controller)
+    timerArc(controller)
     timerText(controller)
 }
 
@@ -22,7 +21,7 @@ private fun Parent.timerText(controller: PomPlanController) = hbox(spacing = 8, 
     children.addClass(PomPlanStylesheet.timerText)
 }
 
-private fun Parent.timerProgress(controller: PomPlanController) = stackpane {
+private fun Parent.timerArc(controller: PomPlanController) = stackpane {
     group {
         rectangle(x = 0.0, y = 0.0, width = SIZE, height = SIZE) {
             fill = c(PomPlanStylesheet.theme.colors.background)
