@@ -23,8 +23,8 @@ class Reducer : Elm.Reducer<State, Action, Effect> {
     }
 
     private fun reduceValid(state: State, action: UserClick.Button): Pair<State, Effect?> = when (action) {
-        is Stop -> state.stopPomodoro() to null
-        is Skip -> state.skipPomodoro() to null
+        is Stop -> state.stopPomodoro() to Effect.Timer.Stop
+        is Skip -> state.skipPomodoro() to Effect.Timer.Stop
         Play -> state.playPomodoro() to Effect.Timer.Run
         Pause -> state.pausePomodoro() to Effect.Timer.Stop
     }
