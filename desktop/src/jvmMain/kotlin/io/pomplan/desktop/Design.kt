@@ -34,7 +34,7 @@ class PomPlanStylesheet : Stylesheet() {
         }
 
         actionButton {
-            fontSize = 20.px
+            backgroundColor += c(theme.colors.background)
         }
     }
 }
