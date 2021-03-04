@@ -5,6 +5,8 @@ import io.pomplan.common.domain.Pomodoro.Mode.*
 import io.pomplan.common.domain.Time
 import io.pomplan.common.elm.*
 import io.pomplan.common.elm.Controller
+import io.pomplan.desktop.PomPlanStylesheet.Icons.PAUSE_SVG
+import io.pomplan.desktop.PomPlanStylesheet.Icons.PLAY_SVG
 import javafx.application.Platform
 import javafx.beans.property.SimpleDoubleProperty
 import javafx.beans.property.SimpleObjectProperty
@@ -21,7 +23,7 @@ class PomPlanApp : App(MainScreen::class, PomPlanStylesheet::class) {
 
         override val root = stackpane {
             backgroundView(width = 360, height = 560)
-            vbox {
+            vbox(spacing = 32) {
                 timerView(controller)
                 buttonsView(controller)
             }
@@ -37,7 +39,7 @@ class PomPlanController : tornadofx.Controller() {
     val elapsedTimeMinutes = SimpleObjectProperty("")
     val elapsedTimeSeconds = SimpleObjectProperty("")
     val mode = SimpleObjectProperty(PRE_WORK)
-    val playPauseText = SimpleObjectProperty("")
+    val playPauseSvg = SimpleObjectProperty(PLAY_SVG)
     val angle = SimpleDoubleProperty(0.0)
     val progressArcColor = SimpleObjectProperty(c("FFFFFF"))
 
@@ -85,6 +87,6 @@ class PomPlanController : tornadofx.Controller() {
 
     private fun renderButtons(mode: Pomodoro.Mode) {
         this.mode.set(mode)
-        this.playPauseText.set(if (mode in listOf(PRE_WORK, PRE_BREAK)) "Play" else "Pause")
+        this.playPauseSvg.set(if (mode in listOf(PRE_WORK, PRE_BREAK)) PLAY_SVG else PAUSE_SVG)
     }
 }
