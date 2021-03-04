@@ -10,7 +10,7 @@ class Reducer : Elm.Reducer<State, Action, Effect> {
         Effect.IllegalState(state, action)
 
     override fun allowedCondition(state: State, action: Action): Boolean = when (action) {
-        Initial, is Stop, is Skip -> true
+        Initial, Stop, is Skip -> true
         Play -> state.pomodoro.mode in listOf(PRE_WORK, PRE_BREAK)
         is TimerTick, Pause -> state.pomodoro.mode in listOf(WORK, BREAK)
     }
@@ -23,7 +23,7 @@ class Reducer : Elm.Reducer<State, Action, Effect> {
     }
 
     private fun reduceValid(state: State, action: UserClick.Button): Pair<State, Effect?> = when (action) {
-        is Stop -> state.stopPomodoro() to Effect.Timer.Stop
+        Stop -> state.stopPomodoro() to Effect.Timer.Stop
         is Skip -> state.skipPomodoro() to Effect.Timer.Stop
         Play -> state.playPomodoro() to Effect.Timer.Run
         Pause -> state.pausePomodoro() to Effect.Timer.Stop
