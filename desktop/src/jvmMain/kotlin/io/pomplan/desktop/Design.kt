@@ -9,12 +9,13 @@ class PomPlanStylesheet : Stylesheet() {
     }
 
     companion object {
+        val theme: Theme = Theme.Dark
+
         val background by cssclass()
         val timerText by cssclass()
         val actionButton by cssclass()
     }
 
-    private val theme: Theme = Theme.Dark
     init {
         background {
             fill = c(theme.colors.background)

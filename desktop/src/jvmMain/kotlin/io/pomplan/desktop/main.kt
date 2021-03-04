@@ -1,12 +1,10 @@
 package io.pomplan.desktop
 
-import io.pomplan.common.domain.Pomodoro
 import io.pomplan.common.domain.Pomodoro.Mode.*
-import io.pomplan.common.domain.Time
 import io.pomplan.common.elm.*
 import io.pomplan.common.elm.Controller
-import io.pomplan.common.ui.Theme
 import javafx.application.Platform
+import javafx.beans.property.SimpleDoubleProperty
 import javafx.beans.property.SimpleObjectProperty
 import tornadofx.*
 
@@ -16,7 +14,7 @@ fun main() = launch<PomPlanApp>()
 class PomPlanApp : App(MainScreen::class, PomPlanStylesheet::class) {
     init { reloadStylesheetsOnFocus() }
 
-    class MainScreen() : View() {
+    class MainScreen : View() {
         private val controller: PomPlanController by inject()
 
         override val root = stackpane {
@@ -38,6 +36,9 @@ class PomPlanController : tornadofx.Controller() {
     val elapsedTimeSeconds = SimpleObjectProperty("")
     val mode = SimpleObjectProperty(PRE_WORK)
     val playPauseText = SimpleObjectProperty("")
+    val angle = SimpleDoubleProperty(0.0)
+    val progressArcColor = SimpleObjectProperty(c("FFFFFF"))
+
 
     init {
         controller.attach()
@@ -47,9 +48,25 @@ class PomPlanController : tornadofx.Controller() {
     }
 
     private fun render(state: State) {
-        elapsedTimeMinutes.set(state.pomodoro.elapsedTime.minuteString)
-        elapsedTimeSeconds.set(state.pomodoro.elapsedTime.secondsString)
-        mode.set(state.pomodoro.mode)
-        playPauseText.set(if (state.pomodoro.mode in listOf(PRE_WORK, PRE_BREAK)) "Play" else "Pause")
+        val mode = state.pomodoro.mode
+        val elapsedTime = state.pomodoro.elapsedTime
+        val goalTime = state.pomodoro.goalTime
+
+        this.elapsedTimeMinutes.set(elapsedTime.minuteString)
+        this.elapsedTimeSeconds.set(elapsedTime.secondsString)
+        this.mode.set(mode)
+        this.playPauseText.set(if (mode in listOf(PRE_WORK, PRE_BREAK)) "Play" else "Pause")
+        val arcAngle = when (mode) {
+            PRE_WORK, WORK ->
+                elapsedTime.milliseconds.toDouble() / goalTime.milliseconds.toDouble() * 360.0
+            PRE_BREAK, BREAK ->
+                360 - elapsedTime.milliseconds.toDouble() / goalTime.milliseconds.toDouble() * 360.0
+        }
+        this.angle.set(arcAngle)
+        val arcColor = when (mode) {
+            PRE_WORK, WORK -> c(PomPlanStylesheet.theme.colors.red)
+            PRE_BREAK, BREAK -> c(PomPlanStylesheet.theme.colors.grey)
+        }
+        this.progressArcColor.set(arcColor)
     }
 }

@@ -2,6 +2,7 @@ package io.pomplan.desktop
 
 import io.pomplan.common.domain.Pomodoro.Mode.*
 import io.pomplan.common.elm.Action
+import javafx.geometry.Pos
 import javafx.scene.Parent
 import tornadofx.action
 import tornadofx.addClass
@@ -9,7 +10,7 @@ import tornadofx.button
 import tornadofx.hbox
 
 
-fun Parent.buttonsView(controller: PomPlanController) = hbox {
+fun Parent.buttonsView(controller: PomPlanController) = hbox(alignment = Pos.CENTER) {
     button("Stop") {
         action { controller.setAction(Action.UserClick.Button.Stop()) }
     }
