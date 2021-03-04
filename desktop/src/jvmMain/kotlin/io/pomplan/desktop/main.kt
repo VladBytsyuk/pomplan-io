@@ -10,6 +10,7 @@ import io.pomplan.desktop.PomPlanStylesheet.Icons.PLAY_SVG
 import javafx.application.Platform
 import javafx.beans.property.SimpleDoubleProperty
 import javafx.beans.property.SimpleObjectProperty
+import javafx.geometry.Pos
 import tornadofx.*
 
 
@@ -23,7 +24,7 @@ class PomPlanApp : App(MainScreen::class, PomPlanStylesheet::class) {
 
         override val root = stackpane {
             backgroundView(width = 360, height = 560)
-            vbox(spacing = 32) {
+            vbox(spacing = 32, alignment = Pos.CENTER) {
                 timerView(controller)
                 buttonsView(controller)
             }
