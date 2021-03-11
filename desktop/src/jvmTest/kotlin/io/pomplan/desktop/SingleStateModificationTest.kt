@@ -6,7 +6,7 @@ import io.pomplan.common.domain.*
 import io.pomplan.common.elm.*
 
 
-class SimpleStateModificationTest : ShouldSpec({
+class `State modification - single action` : ShouldSpec({
 
     context(name = "Initial state") {
         val initialState = State.initial

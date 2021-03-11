@@ -8,7 +8,7 @@ import io.pomplan.common.elm.skip
 import io.pomplan.common.elm.tick
 
 
-class ComplexStateModificationTest : ShouldSpec({
+class `State modification - complex action` : ShouldSpec({
 
     context(name = "Initial state") {
         val initialState = State.initial
