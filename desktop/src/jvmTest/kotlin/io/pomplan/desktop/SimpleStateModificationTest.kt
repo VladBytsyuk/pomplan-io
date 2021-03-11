@@ -12,16 +12,16 @@ class SimpleStateModificationTest : ShouldSpec({
         val initialState = State.initial
 
         should("be in the same state after pause initial state") {
-            initialState.pausePomodoro() shouldBe initialState
+            initialState.pause() shouldBe initialState
         }
         should("be in the same state after stop initial state") {
-            initialState.stopPomodoro() shouldBe initialState
+            initialState.stop() shouldBe initialState
         }
         should("be in the same state after tick initial state") {
             initialState.tick() shouldBe initialState
         }
         should("be in work mode after play initial state") {
-            initialState.playPomodoro() shouldBe State(
+            initialState.play() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.WORK,
                     goalTime = workTime,
@@ -31,7 +31,7 @@ class SimpleStateModificationTest : ShouldSpec({
             )
         }
         should("be in pre-break mode with 1 done pomodoro after skip initial state") {
-            initialState.skipPomodoro() shouldBe State(
+            initialState.skip() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
                     goalTime = shortBreakTime,
@@ -53,7 +53,7 @@ class SimpleStateModificationTest : ShouldSpec({
         )
 
         should("be in the work state after play pre-work state") {
-            preWorkState.playPomodoro() shouldBe State(
+            preWorkState.play() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.WORK,
                     goalTime = workTime,
@@ -63,16 +63,16 @@ class SimpleStateModificationTest : ShouldSpec({
             )
         }
         should("be in the same state after pause pre-work state") {
-            preWorkState.pausePomodoro() shouldBe preWorkState
+            preWorkState.pause() shouldBe preWorkState
         }
         should("be in the same state after stop pre-work state") {
-            preWorkState.stopPomodoro() shouldBe preWorkState
+            preWorkState.stop() shouldBe preWorkState
         }
         should("be in the same state after tick pre-work state") {
             preWorkState.tick() shouldBe preWorkState
         }
         should("be in pre-break mode with 2 done pomodoro after skip pre-work state") {
-            preWorkState.skipPomodoro() shouldBe State(
+            preWorkState.skip() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
                     goalTime = shortBreakTime,
@@ -94,7 +94,7 @@ class SimpleStateModificationTest : ShouldSpec({
         )
 
         should("be in the pre-work state after pause work state") {
-            workState.pausePomodoro() shouldBe State(
+            workState.pause() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_WORK,
                     goalTime = workTime,
@@ -104,7 +104,7 @@ class SimpleStateModificationTest : ShouldSpec({
             )
         }
         should("be in the pre-work state after stop work state") {
-            workState.stopPomodoro() shouldBe State(
+            workState.stop() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_WORK,
                     goalTime = workTime,
@@ -124,10 +124,10 @@ class SimpleStateModificationTest : ShouldSpec({
             )
         }
         should("be in the same state after play work state") {
-            workState.playPomodoro() shouldBe workState
+            workState.play() shouldBe workState
         }
         should("be in pre-break state with 1 done pomodoro after skip work state") {
-            workState.skipPomodoro() shouldBe State(
+            workState.skip() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
                     goalTime = shortBreakTime,
@@ -149,7 +149,7 @@ class SimpleStateModificationTest : ShouldSpec({
         )
 
         should("be in the break state after play pre-break state") {
-            preBreakState.playPomodoro() shouldBe State(
+            preBreakState.play() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.BREAK,
                     goalTime = shortBreakTime,
@@ -159,16 +159,16 @@ class SimpleStateModificationTest : ShouldSpec({
             )
         }
         should("be in the same state after pause pre-break state") {
-            preBreakState.pausePomodoro() shouldBe preBreakState
+            preBreakState.pause() shouldBe preBreakState
         }
         should("be in the same state after stop pre-break state") {
-            preBreakState.stopPomodoro() shouldBe preBreakState
+            preBreakState.stop() shouldBe preBreakState
         }
         should("be in the same state after tick pre-break state") {
             preBreakState.tick() shouldBe preBreakState
         }
-        should("be in pre-work mode with 2 done pomodoro after skip pre-break state") {
-            preBreakState.skipPomodoro() shouldBe State(
+        should("be in pre-work mode with 1 done pomodoro after skip pre-break state") {
+            preBreakState.skip() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_WORK,
                     goalTime = workTime,
@@ -190,7 +190,7 @@ class SimpleStateModificationTest : ShouldSpec({
         )
 
         should("be in the pre-work state after pause short-break state") {
-            shortBreakState.pausePomodoro() shouldBe State(
+            shortBreakState.pause() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
                     goalTime = shortBreakTime,
@@ -200,7 +200,7 @@ class SimpleStateModificationTest : ShouldSpec({
             )
         }
         should("be in the pre-break state after stop short-break state") {
-            shortBreakState.stopPomodoro() shouldBe State(
+            shortBreakState.stop() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
                     goalTime = shortBreakTime,
@@ -220,10 +220,10 @@ class SimpleStateModificationTest : ShouldSpec({
             )
         }
         should("be in the same state after play short-break state") {
-            shortBreakState.playPomodoro() shouldBe shortBreakState
+            shortBreakState.play() shouldBe shortBreakState
         }
         should("be in pre-work state with 1 done pomodoro after skip short-break state") {
-            shortBreakState.skipPomodoro() shouldBe State(
+            shortBreakState.skip() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_WORK,
                     goalTime = workTime,
@@ -245,7 +245,7 @@ class SimpleStateModificationTest : ShouldSpec({
         )
 
         should("be in the pre-work state after pause long-break state") {
-            shortBreakState.pausePomodoro() shouldBe State(
+            shortBreakState.pause() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
                     goalTime = longBreakTime,
@@ -255,7 +255,7 @@ class SimpleStateModificationTest : ShouldSpec({
             )
         }
         should("be in the pre-break state after stop long-break state") {
-            shortBreakState.stopPomodoro() shouldBe State(
+            shortBreakState.stop() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
                     goalTime = longBreakTime,
@@ -275,10 +275,10 @@ class SimpleStateModificationTest : ShouldSpec({
             )
         }
         should("be in the same state after play long-break state") {
-            shortBreakState.playPomodoro() shouldBe shortBreakState
+            shortBreakState.play() shouldBe shortBreakState
         }
-        should("be in pre-work state with 1 done pomodoro after skip long-break state") {
-            shortBreakState.skipPomodoro() shouldBe State(
+        should("be in pre-work state with 4 done pomodoro after skip long-break state") {
+            shortBreakState.skip() shouldBe State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_WORK,
                     goalTime = workTime,

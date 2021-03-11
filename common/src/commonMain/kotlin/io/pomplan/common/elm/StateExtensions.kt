@@ -4,12 +4,12 @@ import io.pomplan.common.domain.*
 import io.pomplan.common.domain.Pomodoro.Mode.*
 
 
-fun State.stopPomodoro(): State = when (pomodoro.mode) {
+fun State.stop(): State = when (pomodoro.mode) {
     PRE_WORK, WORK -> updatePomodoro(mode = PRE_WORK, elapsedTime = pomodoro.goalTime)
     PRE_BREAK, BREAK -> updatePomodoro(mode = PRE_BREAK, elapsedTime = pomodoro.goalTime)
 }
 
-fun State.skipPomodoro(): State = when (pomodoro.mode) {
+fun State.skip(): State = when (pomodoro.mode) {
     WORK, PRE_WORK -> updatePomodoro(
         mode = PRE_BREAK,
         goalTime = pomodoro.nextBreakTime,
@@ -23,13 +23,13 @@ fun State.skipPomodoro(): State = when (pomodoro.mode) {
     )
 }
 
-fun State.playPomodoro(): State = when (pomodoro.mode) {
+fun State.play(): State = when (pomodoro.mode) {
     WORK, BREAK -> this
     PRE_WORK -> updatePomodoro(mode = WORK)
     PRE_BREAK -> updatePomodoro(mode = BREAK)
 }
 
-fun State.pausePomodoro(): State = when (pomodoro.mode) {
+fun State.pause(): State = when (pomodoro.mode) {
     PRE_WORK, PRE_BREAK -> this
     WORK -> updatePomodoro(mode = PRE_WORK)
     BREAK -> updatePomodoro(mode = PRE_BREAK)
