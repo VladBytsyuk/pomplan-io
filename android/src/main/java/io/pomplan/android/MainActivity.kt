@@ -19,16 +19,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setOnClickListeners()
-        controller.subscribeOnState<State>("this") { render(it) }
     }
 
     override fun onStart() {
         super.onStart()
+        controller.subscribeOnState<State>("this") { render(it) }
         controller.attach()
     }
 
     override fun onStop() {
         controller.detach()
+        controller.unsubscribeFromState("this")
         super.onStop()
     }
 
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             controller.setAction(action)
         }
         findViewById<ImageView>(R.id.btnStop).setOnClickListener {
-            controller.setAction(Action.UserClick.Button.Stop())
+            controller.setAction(Action.UserClick.Button.Stop)
         }
         findViewById<ImageView>(R.id.btnSkip).setOnClickListener {
             controller.setAction(Action.UserClick.Button.Skip())

@@ -28,6 +28,11 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
+
+                val kotestVersion = "4.4.1"
+                implementation("io.kotest:kotest-runner-junit5:$kotestVersion")
+                implementation("io.kotest:kotest-assertions-core:$kotestVersion")
+                implementation("io.kotest:kotest-property:$kotestVersion")
             }
         }
     }
