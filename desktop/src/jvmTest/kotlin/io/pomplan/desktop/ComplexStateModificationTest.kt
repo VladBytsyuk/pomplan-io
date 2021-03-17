@@ -14,7 +14,7 @@ class `State modification - complex action` : ShouldSpec({
         val initialState = State.initial
 
         should(
-            name = "be a long-break state after 7 skip actions",
+            be = "a long-break state after 7 skip actions",
             actual = initialState
                 .multiOperation(times = 7) { it.skip() },
             expected = State(
@@ -29,7 +29,7 @@ class `State modification - complex action` : ShouldSpec({
 
         val ticksToWorkEnd = workTime.minute * SECONDS_IN_MINUTE.toInt()
         should(
-            name = "be a work state after play action and $ticksToWorkEnd ticks",
+            be = "a work state after play action and $ticksToWorkEnd ticks",
             actual = initialState
                 .play()
                 .multiOperation(times = ticksToWorkEnd) { it.tick() },
@@ -45,7 +45,7 @@ class `State modification - complex action` : ShouldSpec({
 
         val ticksToPreBreak = ticksToWorkEnd + 1
         should(
-            name = "be a pre-break state after play action and $ticksToPreBreak ticks",
+            be = "a pre-break state after play action and $ticksToPreBreak ticks",
             actual = initialState
                 .play()
                 .multiOperation(times = ticksToPreBreak) { it.tick() },

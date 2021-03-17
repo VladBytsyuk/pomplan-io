@@ -11,6 +11,6 @@ inline fun <T> T.multiOperation(times: Int, block: (T) -> T): T {
     return value
 }
 
-suspend inline fun <T> ShouldSpecContextScope.should(name: String, actual: T, expected: T) {
-    should(name) { actual shouldBe expected }
+suspend inline fun <T> ShouldSpecContextScope.should(be: String, actual: T, expected: T) {
+    should("be $be") { actual shouldBe expected }
 }
