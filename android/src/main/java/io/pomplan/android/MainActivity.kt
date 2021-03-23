@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import io.pomplan.android.ui_kit.PomodoroPanelView
 import io.pomplan.android.ui_kit.TimerProgressView
+import io.pomplan.android.ui_kit.TimerView
 import io.pomplan.common.domain.Pomodoro.Mode.*
 import io.pomplan.common.elm.Action
 import io.pomplan.common.elm.Controller
@@ -50,22 +51,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun render(data: State) {
         val pomodoro = data.pomodoro
-        findViewById<TimerProgressView>(R.id.timerProgress).data = TimerProgressView.Data(
-            goal = pomodoro.goalTime.milliseconds,
-            elapsed = pomodoro.elapsedTime.milliseconds,
-            isWork = pomodoro.mode in listOf(WORK, PRE_WORK)
+
+        findViewById<TimerView>(R.id.timer).data = TimerView.Data(
+            goal = pomodoro.goalTime,
+            elapsed = pomodoro.elapsedTime,
+            mode = pomodoro.mode,
         )
-        findViewById<TextView>(R.id.timerMinutes).text = pomodoro.elapsedTime.minute
-            .let { if (it.toString().length == 1) "0$it" else it.toString() }
-        findViewById<TextView>(R.id.timerSeconds).text = pomodoro.elapsedTime.seconds
-            .let { if (it.toString().length == 1) "0$it" else it.toString() }
         findViewById<ImageView>(R.id.btnPlayPause).setImageResource(
             if (pomodoro.mode in listOf(PRE_WORK, PRE_BREAK)) R.drawable.ic_play else R.drawable.ic_pause
         )
         findViewById<PomodoroPanelView>(R.id.pomodoroPanel).count = PomodoroPanelView.Data(
             doneCount = pomodoro.number,
-            currentInProgress = pomodoro.mode == WORK
-                    || pomodoro.mode == PRE_WORK && pomodoro.elapsedTime != pomodoro.goalTime
+            currentInProgress = pomodoro.mode in listOf(WORK, PRE_WORK)
         )
     }
 }
