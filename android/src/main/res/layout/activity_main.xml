@@ -68,7 +68,6 @@
         app:layout_constraintHorizontal_chainStyle="packed"
     />
 
-
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btnPlayPause"
         android:layout_width="98dp"
@@ -92,5 +91,16 @@
         app:layout_constraintTop_toTopOf="@+id/btnPlayPause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/btnPlayPause"
+        />
+
+
+    <io.pomplan.android.ui_kit.PomodoroPanelView
+        android:id="@+id/pomodoroPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlayPause"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

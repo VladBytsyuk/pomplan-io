@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import io.pomplan.android.ui_kit.PomodoroPanelView
 import io.pomplan.android.ui_kit.TimerProgressView
 import io.pomplan.common.domain.Pomodoro.Mode.*
 import io.pomplan.common.elm.Action
@@ -60,6 +61,11 @@ class MainActivity : AppCompatActivity() {
             .let { if (it.toString().length == 1) "0$it" else it.toString() }
         findViewById<ImageView>(R.id.btnPlayPause).setImageResource(
             if (pomodoro.mode in listOf(PRE_WORK, PRE_BREAK)) R.drawable.ic_play else R.drawable.ic_pause
+        )
+        findViewById<PomodoroPanelView>(R.id.pomodoroPanel).count = PomodoroPanelView.Data(
+            doneCount = pomodoro.number,
+            currentInProgress = pomodoro.mode == WORK
+                    || pomodoro.mode == PRE_WORK && pomodoro.elapsedTime != pomodoro.goalTime
         )
     }
 }

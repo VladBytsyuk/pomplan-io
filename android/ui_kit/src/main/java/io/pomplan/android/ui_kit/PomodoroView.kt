@@ -3,6 +3,7 @@ package io.pomplan.android.ui_kit
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -35,6 +36,6 @@ class PomodoroView @JvmOverloads constructor(
             color = if (data == EMPTY) inactiveColor else activeColor
             style = if (data == FILLED) Paint.Style.FILL_AND_STROKE else Paint.Style.STROKE
         }
-        canvas.drawCircle(width / 2f, height / 2f, width / 2f, paint)
+        canvas.drawCircle(width / 2f, height / 2f, width / 2f - stroke / 2, paint)
     }
 }
