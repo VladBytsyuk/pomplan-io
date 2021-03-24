@@ -9,6 +9,7 @@ import io.pomplan.desktop.PomPlanStylesheet.Icons.PAUSE_SVG
 import io.pomplan.desktop.PomPlanStylesheet.Icons.PLAY_SVG
 import javafx.application.Platform
 import javafx.beans.property.SimpleDoubleProperty
+import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleObjectProperty
 import javafx.geometry.Pos
 import tornadofx.*
@@ -39,6 +40,7 @@ class PomPlanController : tornadofx.Controller() {
 
     val elapsedTimeMinutes = SimpleObjectProperty("")
     val elapsedTimeSeconds = SimpleObjectProperty("")
+    val donePomodoro = SimpleIntegerProperty(0)
     val mode = SimpleObjectProperty(PRE_WORK)
     val playPauseSvg = SimpleObjectProperty(PLAY_SVG)
     val angle = SimpleDoubleProperty(0.0)
