@@ -36,11 +36,10 @@
         android:id="@+id/btnPlayPause"
         android:layout_width="98dp"
         android:layout_height="98dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         android:tint="@color/white_dark"
         app:srcCompat="@drawable/ic_play"
         app:layout_constraintStart_toEndOf="@+id/btnStop"
-        app:layout_constraintTop_toBottomOf="@+id/timer"
         app:layout_constraintEnd_toStartOf="@+id/btnSkip"
         app:layout_constraintBottom_toTopOf="@+id/pomodoroPanel"
         />
@@ -63,8 +62,8 @@
         android:id="@+id/pomodoroPanel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPlayPause"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
