@@ -28,6 +28,7 @@ class PomPlanApp : App(MainScreen::class, PomPlanStylesheet::class) {
             vbox(spacing = 32, alignment = Pos.CENTER) {
                 timerView(controller)
                 buttonsView(controller)
+                pomodoroPanelView(controller)
             }
         }
     }
@@ -58,6 +59,7 @@ class PomPlanController : tornadofx.Controller() {
         val mode = state.pomodoro.mode
         val elapsedTime = state.pomodoro.elapsedTime
         val goalTime = state.pomodoro.goalTime
+        this.donePomodoro.set(state.pomodoro.lastDoneNumber)
 
         renderTimer(mode, elapsedTime, goalTime)
         renderButtons(mode)
