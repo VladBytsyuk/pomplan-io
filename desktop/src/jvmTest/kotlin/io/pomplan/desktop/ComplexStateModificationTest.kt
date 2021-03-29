@@ -20,14 +20,20 @@ class `State modification - complex action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
-                    goalTime = longBreakTime,
-                    elapsedTime = longBreakTime,
+                    goalTime = Time(minute = 15),
+                    elapsedTime = Time(minute = 15),
                     lastDoneNumber = 4
+                ),
+                settings = Settings(
+                    workTime = Time(minute = 25),
+                    shortBreakTime = Time(minute = 5),
+                    longBreakTime = Time(minute = 15),
+                    groupSize = 4
                 )
             )
         )
 
-        val ticksToWorkEnd = workTime.minute * SECONDS_IN_MINUTE.toInt()
+        val ticksToWorkEnd = 25 * SECONDS_IN_MINUTE.toInt()
         should(
             be = "a work state after play action and $ticksToWorkEnd ticks",
             actual = initialState
@@ -36,9 +42,15 @@ class `State modification - complex action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.WORK,
-                    goalTime = workTime,
-                    elapsedTime = Time(minute = 0, second = 0),
+                    goalTime = Time(minute = 25),
+                    elapsedTime = Time(minute = 0),
                     lastDoneNumber = 0
+                ),
+                settings = Settings(
+                    workTime = Time(minute = 25),
+                    shortBreakTime = Time(minute = 5),
+                    longBreakTime = Time(minute = 15),
+                    groupSize = 4
                 )
             )
         )
@@ -52,9 +64,15 @@ class `State modification - complex action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
-                    goalTime = shortBreakTime,
-                    elapsedTime = shortBreakTime,
+                    goalTime = Time(minute = 5),
+                    elapsedTime = Time(minute = 5),
                     lastDoneNumber = 1
+                ),
+                settings = Settings(
+                    workTime = Time(minute = 25),
+                    shortBreakTime = Time(minute = 5),
+                    longBreakTime = Time(minute = 15),
+                    groupSize = 4
                 )
             )
         )

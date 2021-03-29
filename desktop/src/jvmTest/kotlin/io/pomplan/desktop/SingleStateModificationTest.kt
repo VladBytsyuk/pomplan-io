@@ -6,6 +6,12 @@ import io.pomplan.common.elm.*
 
 
 class `State modification - single action` : ShouldSpec({
+    val settings = Settings(
+        workTime = Time(minute = 25),
+        shortBreakTime = Time(minute = 5),
+        longBreakTime = Time(minute = 15),
+        groupSize = 4
+    )
 
     context(name = "Initial state") {
         val initialState = State.initial
@@ -34,10 +40,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.WORK,
-                    goalTime = workTime,
-                    elapsedTime = workTime,
+                    goalTime = Time(minute = 25),
+                    elapsedTime = Time(minute = 25),
                     lastDoneNumber = 0
-                )
+                ),
+                settings = settings
             )
         )
         should(
@@ -46,10 +53,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
-                    goalTime = shortBreakTime,
-                    elapsedTime = shortBreakTime,
+                    goalTime = Time(minute = 5),
+                    elapsedTime = Time(minute = 5),
                     lastDoneNumber = 1
-                )
+                ),
+                settings = settings
             )
         )
     }
@@ -58,10 +66,11 @@ class `State modification - single action` : ShouldSpec({
         val preWorkState = State(
             pomodoro = Pomodoro(
                 mode = Pomodoro.Mode.PRE_WORK,
-                goalTime = workTime,
-                elapsedTime = workTime,
+                goalTime = Time(minute = 25),
+                elapsedTime = Time(minute = 25),
                 lastDoneNumber = 1
-            )
+            ),
+            settings = settings
         )
 
         should(
@@ -70,10 +79,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.WORK,
-                    goalTime = workTime,
-                    elapsedTime = workTime,
+                    goalTime = Time(minute = 25),
+                    elapsedTime = Time(minute = 25),
                     lastDoneNumber = 1
-                )
+                ),
+                settings = settings
             )
         )
         should(
@@ -97,10 +107,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
-                    goalTime = shortBreakTime,
-                    elapsedTime = shortBreakTime,
+                    goalTime = Time(minute = 5),
+                    elapsedTime = Time(minute = 5),
                     lastDoneNumber = 2
-                )
+                ),
+                settings = settings
             )
         )
     }
@@ -109,10 +120,11 @@ class `State modification - single action` : ShouldSpec({
         val workState = State(
             pomodoro = Pomodoro(
                 mode = Pomodoro.Mode.WORK,
-                goalTime = workTime,
-                elapsedTime = Time(workTime.milliseconds - 15_000),
+                goalTime = Time(minute = 25),
+                elapsedTime = Time(minute = 24, second = 45),
                 lastDoneNumber = 0
-            )
+            ),
+            settings = settings
         )
 
         should(
@@ -121,10 +133,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_WORK,
-                    goalTime = workTime,
-                    elapsedTime = Time(workTime.milliseconds - 15_000),
+                    goalTime = Time(minute = 25),
+                    elapsedTime = Time(minute = 24, second = 45),
                     lastDoneNumber = 0
-                )
+                ),
+                settings = settings
             )
         )
         should(
@@ -133,10 +146,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_WORK,
-                    goalTime = workTime,
-                    elapsedTime = workTime,
+                    goalTime = Time(minute = 25),
+                    elapsedTime = Time(minute = 25),
                     lastDoneNumber = 0
-                )
+                ),
+                settings = settings
             )
         )
         should(
@@ -145,10 +159,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.WORK,
-                    goalTime = workTime,
-                    elapsedTime = Time(workTime.milliseconds - 16_000),
+                    goalTime = Time(minute = 25),
+                    elapsedTime = Time(minute = 24, second = 44),
                     lastDoneNumber = 0
-                )
+                ),
+                settings = settings
             )
         )
         should(
@@ -162,10 +177,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
-                    goalTime = shortBreakTime,
-                    elapsedTime = shortBreakTime,
+                    goalTime = Time(minute = 5),
+                    elapsedTime = Time(minute = 5),
                     lastDoneNumber = 1
-                )
+                ),
+                settings = settings
             )
         )
     }
@@ -174,10 +190,11 @@ class `State modification - single action` : ShouldSpec({
         val preBreakState = State(
             pomodoro = Pomodoro(
                 mode = Pomodoro.Mode.PRE_BREAK,
-                goalTime = shortBreakTime,
-                elapsedTime = shortBreakTime,
+                goalTime = Time(minute = 5),
+                elapsedTime = Time(minute = 5),
                 lastDoneNumber = 1
-            )
+            ),
+            settings = settings
         )
 
         should(
@@ -186,10 +203,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.BREAK,
-                    goalTime = shortBreakTime,
-                    elapsedTime = shortBreakTime,
+                    goalTime = Time(minute = 5),
+                    elapsedTime = Time(minute = 5),
                     lastDoneNumber = 1
-                )
+                ),
+                settings = settings
             )
         )
         should(
@@ -213,10 +231,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_WORK,
-                    goalTime = workTime,
-                    elapsedTime = workTime,
+                    goalTime = Time(minute = 25),
+                    elapsedTime = Time(minute = 25),
                     lastDoneNumber = 1
-                )
+                ),
+                settings = settings
             )
         )
     }
@@ -225,10 +244,11 @@ class `State modification - single action` : ShouldSpec({
         val shortBreakState = State(
             pomodoro = Pomodoro(
                 mode = Pomodoro.Mode.BREAK,
-                goalTime = shortBreakTime,
-                elapsedTime = Time(shortBreakTime.milliseconds - 5_000),
+                goalTime = Time(minute = 5),
+                elapsedTime = Time(minute = 4, second = 55),
                 lastDoneNumber = 1
-            )
+            ),
+            settings = settings
         )
 
         should(
@@ -237,10 +257,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
-                    goalTime = shortBreakTime,
-                    elapsedTime = Time(shortBreakTime.milliseconds - 5_000),
+                    goalTime = Time(minute = 5),
+                    elapsedTime = Time(minute = 4, second = 55),
                     lastDoneNumber = 1
-                )
+                ),
+                settings = settings
             )
         )
         should(
@@ -249,10 +270,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
-                    goalTime = shortBreakTime,
-                    elapsedTime = shortBreakTime,
+                    goalTime = Time(minute = 5),
+                    elapsedTime = Time(minute = 5),
                     lastDoneNumber = 1
-                )
+                ),
+                settings = settings
             )
         )
         should(
@@ -261,10 +283,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.BREAK,
-                    goalTime = shortBreakTime,
-                    elapsedTime = Time(shortBreakTime.milliseconds - 6_000),
+                    goalTime = Time(minute = 5),
+                    elapsedTime = Time(minute = 4, second = 54),
                     lastDoneNumber = 1
-                )
+                ),
+                settings = settings
             )
         )
         should(
@@ -278,10 +301,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_WORK,
-                    goalTime = workTime,
-                    elapsedTime = workTime,
+                    goalTime = Time(minute = 25),
+                    elapsedTime = Time(minute = 25),
                     lastDoneNumber = 1
-                )
+                ),
+                settings = settings
             )
         )
     }
@@ -290,10 +314,11 @@ class `State modification - single action` : ShouldSpec({
         val shortBreakState = State(
             pomodoro = Pomodoro(
                 mode = Pomodoro.Mode.BREAK,
-                goalTime = longBreakTime,
-                elapsedTime = Time(longBreakTime.milliseconds - 5_000),
+                goalTime = Time(minute = 15),
+                elapsedTime = Time(minute = 14, second = 55),
                 lastDoneNumber = 4
-            )
+            ),
+            settings = settings
         )
 
         should(
@@ -302,10 +327,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
-                    goalTime = longBreakTime,
-                    elapsedTime = Time(longBreakTime.milliseconds - 5_000),
+                    goalTime = Time(minute = 15),
+                    elapsedTime = Time(minute = 14, second = 55),
                     lastDoneNumber = 4
-                )
+                ),
+                settings = settings
             )
         )
         should(
@@ -314,10 +340,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
-                    goalTime = longBreakTime,
-                    elapsedTime = longBreakTime,
+                    goalTime = Time(minute = 15),
+                    elapsedTime = Time(minute = 15),
                     lastDoneNumber = 4
-                )
+                ),
+                settings = settings
             )
         )
         should(
@@ -326,10 +353,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.BREAK,
-                    goalTime = longBreakTime,
-                    elapsedTime = Time(longBreakTime.milliseconds - 6_000),
+                    goalTime = Time(minute = 15),
+                    elapsedTime = Time(minute = 14, second = 54),
                     lastDoneNumber = 4
-                )
+                ),
+                settings = settings
             )
         )
         should(
@@ -343,10 +371,11 @@ class `State modification - single action` : ShouldSpec({
             expected = State(
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_WORK,
-                    goalTime = workTime,
-                    elapsedTime = workTime,
+                    goalTime = Time(minute = 25),
+                    elapsedTime = Time(minute = 25),
                     lastDoneNumber = 4
-                )
+                ),
+                settings = settings
             )
         )
     }

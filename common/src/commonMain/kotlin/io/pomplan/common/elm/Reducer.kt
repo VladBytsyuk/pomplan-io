@@ -1,6 +1,7 @@
 package io.pomplan.common.elm
 
 import io.pomplan.common.domain.Pomodoro.Mode.*
+import io.pomplan.common.domain.done
 import io.pomplan.common.elm.Action.*
 import io.pomplan.common.elm.Action.UserClick.Button.*
 

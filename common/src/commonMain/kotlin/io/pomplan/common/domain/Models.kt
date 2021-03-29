@@ -1,10 +1,7 @@
 package io.pomplan.common.domain
 
+import io.pomplan.common.elm.State
 
-val workTime = Time(minute = 25)
-val shortBreakTime = Time(minute = 5)
-val longBreakTime = Time(minute = 15)
-val groupSize = 4
 
 data class Pomodoro(
     val mode: Mode,
@@ -13,12 +10,20 @@ data class Pomodoro(
     val lastDoneNumber: Int
 ) {
     enum class Mode { PRE_WORK, WORK, PRE_BREAK, BREAK }
-
-    val done: Boolean = elapsedTime.isZero
-    val number = lastDoneNumber + 1
-    private val lastInGroup: Boolean = number % groupSize == 0
-    val nextBreakTime: Time = if (lastInGroup) longBreakTime else shortBreakTime
 }
+
+data class Settings(
+    val workTime: Time,
+    val shortBreakTime: Time,
+    val longBreakTime: Time,
+    val groupSize: Int
+)
+
+
+val Pomodoro.done: Boolean get() = elapsedTime.isZero
+val Pomodoro.number get() = lastDoneNumber + 1
+private val State.lastInGroup: Boolean get() = pomodoro.number % settings.groupSize == 0
+val State.nextBreakTime: Time get() = if (lastInGroup) settings.longBreakTime else settings.shortBreakTime
 
 data class Time(val milliseconds: Long = 0) : Comparable<Long>{
     init { require(milliseconds >= 0) }

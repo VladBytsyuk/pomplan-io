@@ -12,14 +12,14 @@ fun State.stop(): State = when (pomodoro.mode) {
 fun State.skip(): State = when (pomodoro.mode) {
     WORK, PRE_WORK -> updatePomodoro(
         mode = PRE_BREAK,
-        goalTime = pomodoro.nextBreakTime,
-        elapsedTime = pomodoro.nextBreakTime,
+        goalTime = nextBreakTime,
+        elapsedTime = nextBreakTime,
         lastDoneNumber = pomodoro.number
     )
     BREAK, PRE_BREAK -> updatePomodoro(
         mode = PRE_WORK,
-        goalTime = workTime,
-        elapsedTime = workTime
+        goalTime = settings.workTime,
+        elapsedTime = settings.workTime
     )
 }
 
@@ -41,8 +41,8 @@ fun State.tick(): State = when (pomodoro.mode) {
     WORK -> when {
         pomodoro.done -> updatePomodoro(
             mode = PRE_BREAK,
-            goalTime = pomodoro.nextBreakTime,
-            elapsedTime = pomodoro.nextBreakTime,
+            goalTime = nextBreakTime,
+            elapsedTime = nextBreakTime,
             lastDoneNumber = pomodoro.number
         )
         else -> takeSecondFromElapsedTime()
@@ -50,8 +50,8 @@ fun State.tick(): State = when (pomodoro.mode) {
     BREAK -> when {
         pomodoro.done -> updatePomodoro(
             mode = PRE_WORK,
-            goalTime = workTime,
-            elapsedTime = workTime
+            goalTime = settings.workTime,
+            elapsedTime = settings.workTime
         )
         else -> takeSecondFromElapsedTime()
     }

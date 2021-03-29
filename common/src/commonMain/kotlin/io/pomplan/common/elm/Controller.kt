@@ -2,9 +2,6 @@ package io.pomplan.common.elm
 
 import io.pomplan.common.Logger
 import io.pomplan.common.Timer
-import io.pomplan.common.domain.Pomodoro
-import io.pomplan.common.domain.Pomodoro.Mode.*
-import io.pomplan.common.domain.workTime
 
 
 class Controller(

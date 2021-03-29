@@ -6,6 +6,7 @@ import io.pomplan.android.databinding.ActivityMainBinding
 import io.pomplan.android.ui_kit.PomodoroPanelView
 import io.pomplan.android.ui_kit.TimerView
 import io.pomplan.common.domain.Pomodoro.Mode.*
+import io.pomplan.common.domain.number
 import io.pomplan.common.elm.Action
 import io.pomplan.common.elm.Controller
 import io.pomplan.common.elm.State
