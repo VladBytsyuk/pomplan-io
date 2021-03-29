@@ -5,7 +5,7 @@ plugins {
 tasks.withType<Test> { useJUnitPlatform() }
 
 group = "io.pomplan"
-version = "0.1"
+version = "0.2"
 
 repositories {
     mavenCentral()
