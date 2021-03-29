@@ -25,7 +25,7 @@ class PomPlanApp : App(MainScreen::class, PomPlanStylesheet::class) {
 
         override val root = stackpane {
             backgroundView(width = 360, height = 560)
-            vbox(spacing = 32, alignment = Pos.CENTER) {
+            vbox(spacing = 64, alignment = Pos.CENTER) {
                 timerView(controller)
                 buttonsView(controller)
                 pomodoroPanelView(controller)
