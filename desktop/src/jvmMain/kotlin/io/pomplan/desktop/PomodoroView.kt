@@ -2,10 +2,6 @@ package io.pomplan.desktop
 
 import io.pomplan.common.domain.Pomodoro
 import io.pomplan.common.domain.Pomodoro.Mode.*
-import io.pomplan.common.elm.State
-import javafx.beans.value.ChangeListener
-import javafx.beans.value.ObservableValue
-import javafx.scene.Parent
 import javafx.scene.layout.Pane
 import javafx.scene.shape.Shape
 import tornadofx.c
@@ -18,6 +14,7 @@ private const val SIZE = 32
 fun Pane.pomodoroView(controller: PomPlanController, number: Int) = stackpane {
     circle(centerX = SIZE / 2, centerY = SIZE / 2, radius = SIZE / 2 - 4) {
         fill = null
+        strokeWidth = 4.0
         stroke = c(PomPlanStylesheet.theme.colors.grey)
         controller.donePomodoro.addListener { _, _, donePomodoroNumber ->
             val donePomodoro = donePomodoroNumber?.toInt() ?: return@addListener
@@ -31,8 +28,14 @@ fun Pane.pomodoroView(controller: PomPlanController, number: Int) = stackpane {
 }
 
 private fun Shape.configure(number: Int, donePomodoro: Int, mode: Pomodoro.Mode) {
-    if (donePomodoro >= number
-        || donePomodoro + 1 == number && mode in listOf(PRE_WORK, WORK)
-    ) stroke = c(PomPlanStylesheet.theme.colors.red)
-    if (donePomodoro >= number) fill = c(PomPlanStylesheet.theme.colors.red)
+    val currentPomodoro = donePomodoro + 1
+    val previous = number <= donePomodoro
+    val currentWorkInProgress = mode == WORK && currentPomodoro == number
+    val currentPreWork = mode == PRE_WORK && currentPomodoro == number
+    val preBreak = mode == PRE_BREAK && currentPomodoro == number
+    val breakInProgress = mode == BREAK && currentPomodoro == number
+    stroke = if (
+        previous || !preBreak && !breakInProgress && (currentWorkInProgress || currentPreWork)
+    ) c(PomPlanStylesheet.theme.colors.red) else c(PomPlanStylesheet.theme.colors.grey)
+    if (previous) fill = c(PomPlanStylesheet.theme.colors.red)
 }
