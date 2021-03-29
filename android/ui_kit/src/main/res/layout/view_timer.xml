@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/timerMinutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="12"
+        android:theme="@style/Font.Timer"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/timerSeparator"
+        app:layout_constraintBaseline_toBaselineOf="@+id/timerSeparator"
+    />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/timerSeparator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:theme="@style/Font.Timer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+    />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/timerSeconds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="34"
+        android:theme="@style/Font.Timer"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toEndOf="@+id/timerSeparator"
+        app:layout_constraintBaseline_toBaselineOf="@+id/timerSeparator"
+    />
+
+
+    <io.pomplan.android.ui_kit.TimerProgressView
+        android:id="@+id/timerProgress"
+        android:layout_width="288dp"
+        android:layout_height="288dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintStart_toStartOf="@+id/timerSeparator"
+        app:layout_constraintTop_toTopOf="@+id/timerSeparator"
+        app:layout_constraintEnd_toEndOf="@+id/timerSeparator"
+        app:layout_constraintBottom_toBottomOf="@+id/timerSeparator"
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

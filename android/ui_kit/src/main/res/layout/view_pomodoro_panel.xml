@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    
+    <io.pomplan.android.ui_kit.PomodoroView
+        android:id="@+id/pv1"
+        android:layout_width="@dimen/view_pomodoro_size"
+        android:layout_height="@dimen/view_pomodoro_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <io.pomplan.android.ui_kit.PomodoroView
+        android:id="@+id/pv2"
+        android:layout_width="@dimen/view_pomodoro_size"
+        android:layout_height="@dimen/view_pomodoro_size"
+        android:layout_marginStart="@dimen/pomodoro_common_margin"
+        app:layout_constraintStart_toEndOf="@+id/pv1"
+        app:layout_constraintTop_toTopOf="@+id/pv1"
+        />
+
+    <io.pomplan.android.ui_kit.PomodoroView
+        android:id="@+id/pv3"
+        android:layout_width="@dimen/view_pomodoro_size"
+        android:layout_height="@dimen/view_pomodoro_size"
+        android:layout_marginStart="@dimen/pomodoro_common_margin"
+        app:layout_constraintStart_toEndOf="@+id/pv2"
+        app:layout_constraintTop_toTopOf="@+id/pv1"
+        />
+
+    <io.pomplan.android.ui_kit.PomodoroView
+        android:id="@+id/pv4"
+        android:layout_width="@dimen/view_pomodoro_size"
+        android:layout_height="@dimen/view_pomodoro_size"
+        android:layout_marginStart="@dimen/pomodoro_common_margin"
+        app:layout_constraintStart_toEndOf="@+id/pv3"
+        app:layout_constraintTop_toTopOf="@+id/pv1"
+        />
+
+
+    <io.pomplan.android.ui_kit.PomodoroView
+        android:id="@+id/pv5"
+        android:layout_width="@dimen/view_pomodoro_size"
+        android:layout_height="@dimen/view_pomodoro_size"
+        android:layout_marginStart="@dimen/pomodoro_big_margin"
+        app:layout_constraintStart_toEndOf="@+id/pv4"
+        app:layout_constraintTop_toTopOf="@+id/pv1"
+        />
+
+    <io.pomplan.android.ui_kit.PomodoroView
+        android:id="@+id/pv6"
+        android:layout_width="@dimen/view_pomodoro_size"
+        android:layout_height="@dimen/view_pomodoro_size"
+        android:layout_marginStart="@dimen/pomodoro_common_margin"
+        app:layout_constraintStart_toEndOf="@+id/pv5"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <io.pomplan.android.ui_kit.PomodoroView
+        android:id="@+id/pv7"
+        android:layout_width="@dimen/view_pomodoro_size"
+        android:layout_height="@dimen/view_pomodoro_size"
+        android:layout_marginStart="@dimen/pomodoro_common_margin"
+        app:layout_constraintStart_toEndOf="@+id/pv6"
+        app:layout_constraintTop_toTopOf="@+id/pv1"
+        />
+
+    <io.pomplan.android.ui_kit.PomodoroView
+        android:id="@+id/pv8"
+        android:layout_width="@dimen/view_pomodoro_size"
+        android:layout_height="@dimen/view_pomodoro_size"
+        android:layout_marginStart="@dimen/pomodoro_common_margin"
+        app:layout_constraintStart_toEndOf="@+id/pv7"
+        app:layout_constraintTop_toTopOf="@+id/pv1"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+
+    <io.pomplan.android.ui_kit.PomodoroView
+        android:id="@+id/pv9"
+        android:layout_width="@dimen/view_pomodoro_size"
+        android:layout_height="@dimen/view_pomodoro_size"
+        android:layout_marginTop="@dimen/pomodoro_common_margin"
+        app:layout_constraintStart_toStartOf="@+id/pv1"
+        app:layout_constraintTop_toBottomOf="@+id/pv1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <io.pomplan.android.ui_kit.PomodoroView
+        android:id="@+id/pv10"
+        android:layout_width="@dimen/view_pomodoro_size"
+        android:layout_height="@dimen/view_pomodoro_size"
+        android:layout_marginStart="@dimen/pomodoro_common_margin"
+        app:layout_constraintStart_toEndOf="@+id/pv9"
+        app:layout_constraintBottom_toBottomOf="@+id/pv9"
+        />
+
+    <io.pomplan.android.ui_kit.PomodoroView
+        android:id="@+id/pv11"
+        android:layout_width="@dimen/view_pomodoro_size"
+        android:layout_height="@dimen/view_pomodoro_size"
+        android:layout_marginStart="@dimen/pomodoro_common_margin"
+        app:layout_constraintStart_toEndOf="@+id/pv10"
+        app:layout_constraintBottom_toBottomOf="@+id/pv9"
+        />
+
+    <io.pomplan.android.ui_kit.PomodoroView
+        android:id="@+id/pv12"
+        android:layout_width="@dimen/view_pomodoro_size"
+        android:layout_height="@dimen/view_pomodoro_size"
+        android:layout_marginStart="@dimen/pomodoro_common_margin"
+        app:layout_constraintStart_toEndOf="@+id/pv11"
+        app:layout_constraintBottom_toBottomOf="@+id/pv9"
+        />
+
+    <io.pomplan.android.ui_kit.PomodoroView
+        android:id="@+id/pv13"
+        android:layout_width="@dimen/view_pomodoro_size"
+        android:layout_height="@dimen/view_pomodoro_size"
+        android:layout_marginStart="@dimen/pomodoro_big_margin"
+        app:layout_constraintStart_toEndOf="@+id/pv12"
+        app:layout_constraintBottom_toBottomOf="@+id/pv9"
+        />
+
+    <io.pomplan.android.ui_kit.PomodoroView
+        android:id="@+id/pv14"
+        android:layout_width="@dimen/view_pomodoro_size"
+        android:layout_height="@dimen/view_pomodoro_size"
+        android:layout_marginStart="@dimen/pomodoro_common_margin"
+        app:layout_constraintStart_toEndOf="@+id/pv13"
+        app:layout_constraintBottom_toBottomOf="@+id/pv9"
+        />
+
+    <io.pomplan.android.ui_kit.PomodoroView
+        android:id="@+id/pv15"
+        android:layout_width="@dimen/view_pomodoro_size"
+        android:layout_height="@dimen/view_pomodoro_size"
+        android:layout_marginStart="@dimen/pomodoro_common_margin"
+        app:layout_constraintStart_toEndOf="@+id/pv14"
+        app:layout_constraintBottom_toBottomOf="@+id/pv9"
+        />
+
+    <io.pomplan.android.ui_kit.PomodoroView
+        android:id="@+id/pv16"
+        android:layout_width="@dimen/view_pomodoro_size"
+        android:layout_height="@dimen/view_pomodoro_size"
+        android:layout_marginStart="@dimen/pomodoro_common_margin"
+        app:layout_constraintStart_toEndOf="@+id/pv15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/pv9"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
