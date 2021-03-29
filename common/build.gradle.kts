@@ -39,7 +39,11 @@ kotlin {
                 implementation("junit:junit:4.13")
             }
         }
-        val desktopMain by getting
+        val desktopMain by getting {
+            dependencies {
+                implementation ("com.beust:klaxon:5.5")
+            }
+        }
         val desktopTest by getting
     }
 }
