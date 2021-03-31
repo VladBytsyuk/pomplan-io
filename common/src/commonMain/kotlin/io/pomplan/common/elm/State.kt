@@ -6,11 +6,15 @@ import io.pomplan.common.domain.Time
 
 
 data class State(
+    val mode: Mode,
     val pomodoro: Pomodoro,
     val settings: Settings,
 ) : Elm.State, Elm.ViewData {
+    enum class Mode { TIMER, SETTINGS }
+
     companion object {
         val initial: State get() = State(
+            mode = Mode.TIMER,
             pomodoro = Pomodoro(
                 mode = Pomodoro.Mode.PRE_WORK,
                 goalTime = Time(minute = 25),

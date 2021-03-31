@@ -1,7 +1,8 @@
-package io.pomplan.common.elm
+package io.pomplan.common.elm.ext
 
 import io.pomplan.common.domain.*
 import io.pomplan.common.domain.Pomodoro.Mode.*
+import io.pomplan.common.elm.State
 
 
 fun State.stop(): State = when (pomodoro.mode) {
@@ -58,6 +59,13 @@ fun State.tick(): State = when (pomodoro.mode) {
 }
 
 
+private fun State.takeSecondFromElapsedTime(): State = updatePomodoro(
+    elapsedTime = when {
+        pomodoro.elapsedTime < 1.second -> Time(minute = 0, second = 0)
+        else -> pomodoro.elapsedTime - 1.second
+    }
+)
+
 private fun State.updatePomodoro(
     mode: Pomodoro.Mode = pomodoro.mode,
     goalTime: Time = pomodoro.goalTime,
@@ -65,11 +73,4 @@ private fun State.updatePomodoro(
     lastDoneNumber: Int = pomodoro.lastDoneNumber
 ): State = copy(
     pomodoro = Pomodoro(mode, goalTime, elapsedTime, lastDoneNumber)
-)
-
-private fun State.takeSecondFromElapsedTime(): State = updatePomodoro(
-    elapsedTime = when {
-        pomodoro.elapsedTime < 1.second -> Time(minute = 0, second = 0)
-        else -> pomodoro.elapsedTime - 1.second
-    }
 )
