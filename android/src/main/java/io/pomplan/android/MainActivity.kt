@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import io.pomplan.android.databinding.ActivityMainBinding
 import io.pomplan.android.ui_kit.PomodoroPanelView
 import io.pomplan.android.ui_kit.TimerView
+import io.pomplan.common.Repository
+import io.pomplan.common.SettingsRepositoryImpl
 import io.pomplan.common.domain.Pomodoro.Mode.*
+import io.pomplan.common.domain.Settings
 import io.pomplan.common.domain.number
 import io.pomplan.common.elm.Action
 import io.pomplan.common.elm.Controller
@@ -15,12 +18,14 @@ import io.pomplan.common.inject
 
 class MainActivity : AppCompatActivity() {
     private val controller: Controller by inject()
+    private val settingsController: Repository<Settings> by inject()
 
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        (settingsController as SettingsRepositoryImpl).context = this
         setContentView(binding.root)
         setOnClickListeners()
     }

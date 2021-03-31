@@ -5,9 +5,12 @@ import android.content.SharedPreferences
 import androidx.core.content.edit
 import io.pomplan.common.domain.Settings
 import io.pomplan.common.domain.Time
+import java.lang.IllegalStateException
 
 
-actual class SettingsRepositoryImpl(private val context: Context) : Repository<Settings> {
+actual class SettingsRepositoryImpl : Repository<Settings> {
+    var context: Context? = null
+
     override var value: Settings
         get() {
             val workTime = Time(
@@ -38,7 +41,10 @@ actual class SettingsRepositoryImpl(private val context: Context) : Repository<S
         }
 
     private val storage: SharedPreferences
-        get() = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+        get() = context?.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+            ?: throw IllegalStateException(
+                "Android implementation of SettingsRepositoryImpl should receive a `Context` instance."
+            )
 
     companion object {
         private const val PACKAGE = "io.pomplan.common.repository"
