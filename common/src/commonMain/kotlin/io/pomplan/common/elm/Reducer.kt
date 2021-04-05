@@ -3,6 +3,8 @@ package io.pomplan.common.elm
 import io.pomplan.common.domain.Pomodoro.Mode.*
 import io.pomplan.common.domain.done
 import io.pomplan.common.elm.Action.*
+import io.pomplan.common.elm.Action.Settings.Change
+import io.pomplan.common.elm.Action.Settings.Change.*
 import io.pomplan.common.elm.Action.UserClick.Button.*
 import io.pomplan.common.elm.State.Mode.*
 import io.pomplan.common.elm.ext.*
@@ -23,7 +25,7 @@ class Reducer : Elm.Reducer<State, Action, Effect> {
 
     override fun reduceValid(state: State, action: Action): Pair<State, Effect?> = when (action) {
         Initial -> state to null
-        is Settings -> reduceValid(state, action)
+        is Change -> reduceValid(state, action)
         is UserClick.Button -> reduceValid(state, action)
         is TimerTick -> state.tick() to (if (state.pomodoro.done) Effect.Timer.Stop else null)
     }
@@ -35,10 +37,12 @@ class Reducer : Elm.Reducer<State, Action, Effect> {
         Pause -> state.pause() to Effect.Timer.Stop
     }
 
-    private fun reduceValid(state: State, action: Settings): Pair<State, Effect?> = when (action) {
-        is Settings.Change.Time.Work -> state.updateSettings(workTime = action.newTime) to null
-        is Settings.Change.Time.ShortBreak -> state.updateSettings(shortBreakTime = action.newTime) to null
-        is Settings.Change.Time.LongBreak -> state.updateSettings(longBreakTime = action.newTime) to null
-        is Settings.Change.GroupSize -> state.updateSettings(groupSize = action.newGroupSize) to null
+    private fun reduceValid(state: State, action: Change): Pair<State, Effect?> = when (action) {
+        is Time.Work -> state.updateSettings(workTime = action.newTime).withSettingsSave()
+        is Time.ShortBreak -> state.updateSettings(shortBreakTime = action.newTime).withSettingsSave()
+        is Time.LongBreak -> state.updateSettings(longBreakTime = action.newTime).withSettingsSave()
+        is GroupSize -> state.updateSettings(groupSize = action.newGroupSize).withSettingsSave()
     }
+
+    private fun State.withSettingsSave() = this to Effect.SaveSettings(settings)
 }

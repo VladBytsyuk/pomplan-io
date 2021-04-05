@@ -1,5 +1,7 @@
 package io.pomplan.common.elm
 
+import io.pomplan.common.domain.Settings
+
 
 sealed class Effect : Elm.Effect {
     data class IllegalState(
@@ -11,4 +13,8 @@ sealed class Effect : Elm.Effect {
         object Run : Timer()
         object Stop : Timer()
     }
+
+    data class SaveSettings(
+        val settings: Settings
+    ) : Effect()
 }

@@ -3,6 +3,8 @@ package io.pomplan.desktop
 import io.kotest.core.spec.style.ShouldSpec
 import io.pomplan.common.domain.*
 import io.pomplan.common.elm.*
+import io.pomplan.common.elm.State.Mode.*
+import io.pomplan.common.elm.ext.*
 
 
 class `State modification - single action` : ShouldSpec({
@@ -38,6 +40,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in work mode after play initial state",
             actual = initialState.play(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.WORK,
                     goalTime = Time(minute = 25),
@@ -51,6 +54,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in pre-break mode with 1 done pomodoro after skip initial state",
             actual = initialState.skip(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
                     goalTime = Time(minute = 5),
@@ -64,6 +68,7 @@ class `State modification - single action` : ShouldSpec({
 
     context(name = "Pre-work state") {
         val preWorkState = State(
+            mode = TIMER,
             pomodoro = Pomodoro(
                 mode = Pomodoro.Mode.PRE_WORK,
                 goalTime = Time(minute = 25),
@@ -77,6 +82,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in the work state after play pre-work state",
             actual = preWorkState.play(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.WORK,
                     goalTime = Time(minute = 25),
@@ -105,6 +111,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in pre-break mode with 2 done pomodoro after skip pre-work state",
             actual = preWorkState.skip(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
                     goalTime = Time(minute = 5),
@@ -118,6 +125,7 @@ class `State modification - single action` : ShouldSpec({
 
     context(name = "Work state") {
         val workState = State(
+            mode = TIMER,
             pomodoro = Pomodoro(
                 mode = Pomodoro.Mode.WORK,
                 goalTime = Time(minute = 25),
@@ -131,6 +139,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in the pre-work state after pause work state",
             actual = workState.pause(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_WORK,
                     goalTime = Time(minute = 25),
@@ -144,6 +153,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in the pre-work state after stop work state",
             actual = workState.stop(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_WORK,
                     goalTime = Time(minute = 25),
@@ -157,6 +167,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in the work state after tick work state",
             actual = workState.tick(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.WORK,
                     goalTime = Time(minute = 25),
@@ -175,6 +186,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in pre-break state with 1 done pomodoro after skip work state",
             actual = workState.skip(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
                     goalTime = Time(minute = 5),
@@ -188,6 +200,7 @@ class `State modification - single action` : ShouldSpec({
 
     context(name = "Pre-break state") {
         val preBreakState = State(
+            mode = TIMER,
             pomodoro = Pomodoro(
                 mode = Pomodoro.Mode.PRE_BREAK,
                 goalTime = Time(minute = 5),
@@ -201,6 +214,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in the break state after play pre-break state",
             actual = preBreakState.play(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.BREAK,
                     goalTime = Time(minute = 5),
@@ -229,6 +243,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in pre-work mode with 1 done pomodoro after skip pre-break state",
             actual = preBreakState.skip(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_WORK,
                     goalTime = Time(minute = 25),
@@ -242,6 +257,7 @@ class `State modification - single action` : ShouldSpec({
 
     context(name = "Short-break state") {
         val shortBreakState = State(
+            mode = TIMER,
             pomodoro = Pomodoro(
                 mode = Pomodoro.Mode.BREAK,
                 goalTime = Time(minute = 5),
@@ -255,6 +271,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in the pre-work state after pause short-break state",
             actual = shortBreakState.pause(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
                     goalTime = Time(minute = 5),
@@ -268,6 +285,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in the pre-break state after stop short-break state",
             actual = shortBreakState.stop(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
                     goalTime = Time(minute = 5),
@@ -281,6 +299,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in the work state after tick short-break state",
             actual = shortBreakState.tick(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.BREAK,
                     goalTime = Time(minute = 5),
@@ -299,6 +318,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in pre-work state with 1 done pomodoro after skip short-break state",
             actual = shortBreakState.skip(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_WORK,
                     goalTime = Time(minute = 25),
@@ -312,6 +332,7 @@ class `State modification - single action` : ShouldSpec({
 
     context(name = "Long-break state") {
         val shortBreakState = State(
+            mode = TIMER,
             pomodoro = Pomodoro(
                 mode = Pomodoro.Mode.BREAK,
                 goalTime = Time(minute = 15),
@@ -325,6 +346,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in the pre-work state after pause long-break state",
             actual = shortBreakState.pause(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
                     goalTime = Time(minute = 15),
@@ -338,6 +360,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in the pre-break state after stop long-break state",
             actual = shortBreakState.stop(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
                     goalTime = Time(minute = 15),
@@ -351,6 +374,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in the work state after tick long-break state",
             actual = shortBreakState.tick(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.BREAK,
                     goalTime = Time(minute = 15),
@@ -369,6 +393,7 @@ class `State modification - single action` : ShouldSpec({
             be = "in pre-work state with 4 done pomodoro after skip long-break state",
             actual = shortBreakState.skip(),
             expected = State(
+                mode = TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_WORK,
                     goalTime = Time(minute = 25),

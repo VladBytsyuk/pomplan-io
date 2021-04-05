@@ -15,7 +15,7 @@ private val coreModule = DI.Module(name = "core") {
     bind<Repository<Settings>>() with provider { SettingsRepositoryImpl() }
     bind<Timer>() with provider { Timer() }
     bind<Controller>() with singleton {
-        Controller(logger = instance(), timer = instance())
+        Controller(logger = instance(), timer = instance(), settingsRepository = instance())
             .apply { timer.tickAction = { setAction(Action.TimerTick()) } }
     }
 }

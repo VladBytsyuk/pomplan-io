@@ -3,9 +3,7 @@ package io.pomplan.desktop
 import io.kotest.core.spec.style.ShouldSpec
 import io.pomplan.common.domain.*
 import io.pomplan.common.elm.State
-import io.pomplan.common.elm.play
-import io.pomplan.common.elm.skip
-import io.pomplan.common.elm.tick
+import io.pomplan.common.elm.ext.*
 
 
 class `State modification - complex action` : ShouldSpec({
@@ -18,6 +16,7 @@ class `State modification - complex action` : ShouldSpec({
             actual = initialState
                 .multiOperation(times = 7) { it.skip() },
             expected = State(
+                mode = State.Mode.TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
                     goalTime = Time(minute = 15),
@@ -40,6 +39,7 @@ class `State modification - complex action` : ShouldSpec({
                 .play()
                 .multiOperation(times = ticksToWorkEnd) { it.tick() },
             expected = State(
+                mode = State.Mode.TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.WORK,
                     goalTime = Time(minute = 25),
@@ -62,6 +62,7 @@ class `State modification - complex action` : ShouldSpec({
                 .play()
                 .multiOperation(times = ticksToPreBreak) { it.tick() },
             expected = State(
+                mode = State.Mode.TIMER,
                 pomodoro = Pomodoro(
                     mode = Pomodoro.Mode.PRE_BREAK,
                     goalTime = Time(minute = 5),
