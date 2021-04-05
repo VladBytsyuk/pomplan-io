@@ -29,4 +29,5 @@
 
     <color name="black_light">#353B48</color>
     <color name="black_dark">#2F3640</color>
+    <color name="black_darkest">#1F2630</color>
 </resources>

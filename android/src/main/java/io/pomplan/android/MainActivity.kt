@@ -2,6 +2,7 @@ package io.pomplan.android
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import io.pomplan.android.databinding.ActivityMainBinding
 import io.pomplan.android.ui_kit.PomodoroPanelView
 import io.pomplan.android.ui_kit.TimerView
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        window.statusBarColor = ContextCompat.getColor(this ,R.color.black_darkest)
         (settingsController as SettingsRepositoryImpl).context = this
         setContentView(binding.root)
         setOnClickListeners()

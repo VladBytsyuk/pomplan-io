@@ -2,19 +2,26 @@
 <resources>
     <style name="PomPlan"/>
 
+    <attr name="bkg" format="reference|color"/>
+    <attr name="bottomBarBkg" format="reference|color"/>
+
     <style name="PomPlan.Light" parent="PomPlan">
+        <item name="colorPrimaryDark">#DCDDE1</item>
         <item name="android:statusBarColor">@color/white_light</item>
-        <item name="android:background">@color/white_light</item>
+        <item name="bkg">@color/white_light</item>
         <item name="android:textColor">@color/black_light</item>
         <item name="android:colorAccent">@color/red_light</item>
         <item name="colorButtonNormal">@color/red_light</item>
+        <item name="bottomBarBkg">#DCDDE1</item>
     </style>
 
     <style name="PomPlan.Dark" parent="PomPlan">
+        <item name="colorPrimaryDark">#1F2630</item>
         <item name="android:statusBarColor">@color/black_dark</item>
-        <item name="android:background">@color/black_dark</item>
+        <item name="bkg">@color/black_dark</item>
         <item name="android:textColor">@color/white_dark</item>
         <item name="android:colorAccent">@color/red_dark</item>
         <item name="colorButtonNormal">@color/red_dark</item>
+        <item name="bottomBarBkg">#1F2630</item>
     </style>
 </resources>
