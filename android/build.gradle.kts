@@ -18,14 +18,31 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation("com.google.android.material:material:1.3.0")
+
+    implementation("androidx.compose.ui:ui:1.0.0-beta01")
+    // Tooling support (Previews, etc.)
+    implementation("androidx.compose.ui:ui-tooling:1.0.0-beta01")
+    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
+    implementation("androidx.compose.foundation:foundation:1.0.0-beta01")
+    // Material Design
+    implementation("androidx.compose.material:material:1.0.0-beta01")
+    // Material design icons
+    implementation("androidx.compose.material:material-icons-core:1.0.0-beta01")
+    implementation("androidx.compose.material:material-icons-extended:1.0.0-beta01")
+    // Integration with observables
+    implementation("androidx.compose.runtime:runtime-livedata:1.0.0-beta01")
+    implementation("androidx.compose.runtime:runtime-rxjava2:1.0.0-beta01")
+
+    // UI Tests
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0-beta01")
 }
 
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(30)
     defaultConfig {
         applicationId = "io.pomplan.android"
         minSdkVersion(24)
-        targetSdkVersion(29)
+        targetSdkVersion(30)
         versionCode = 2
         versionName = "0.2"
     }
@@ -36,6 +53,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        compose = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -43,6 +61,11 @@ android {
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+        useIR = true
+    }
+    composeOptions {
+        kotlinCompilerVersion = "1.4.30"
+        kotlinCompilerExtensionVersion = "1.0.0-beta01"
     }
 }
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> { kotlinOptions.jvmTarget = "1.8" }
