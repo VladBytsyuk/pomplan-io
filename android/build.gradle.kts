@@ -33,6 +33,10 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-livedata:1.0.0-beta01")
     implementation("androidx.compose.runtime:runtime-rxjava2:1.0.0-beta01")
 
+
+    implementation("androidx.navigation:navigation-compose:1.0.0-alpha10")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.3.5")
+
     // UI Tests
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0-beta01")
 }
@@ -52,7 +56,6 @@ android {
         }
     }
     buildFeatures {
-        viewBinding = true
         compose = true
     }
     compileOptions {
