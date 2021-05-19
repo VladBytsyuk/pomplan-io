@@ -9,6 +9,6 @@ import androidx.navigation.compose.rememberNavController
 class AppActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { NavigationHost(navHostController = rememberNavController()) }
+        setContent { Router(navHostController = rememberNavController()) }
     }
 }
