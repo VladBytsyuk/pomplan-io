@@ -7,10 +7,18 @@ plugins {
 group = "io.pomplan"
 version = "0.3"
 
-repositories { google() }
+repositories {
+    google()
+    jcenter()
+    mavenCentral()
+}
 
 buildscript {
-    repositories { jcenter() }
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
 }
 
 
@@ -25,18 +33,19 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("org.kodein.di:kodein-di:7.3.0")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
             }
         }
         val androidMain by getting {
             dependencies {
-                api("androidx.appcompat:appcompat:1.2.0")
-                api("androidx.core:core-ktx:1.3.1")
+                api("androidx.appcompat:appcompat:1.3.0")
+                api("androidx.core:core-ktx:1.5.0")
+
             }
         }
         val androidTest by getting {
             dependencies {
-                implementation("junit:junit:4.13")
+                implementation("junit:junit:4.13.2")
             }
         }
         val desktopMain by getting {
@@ -59,5 +68,15 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerVersion = "1.4.32"
+        kotlinCompilerExtensionVersion = "1.0.0-beta07"
+    }
 }
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> { kotlinOptions.jvmTarget = "1.8" }
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.useIR = true
+}

@@ -15,7 +15,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
 import io.pomplan.android.routing.Destination
-import io.pomplan.android.screen.TimerScreen
 
 
 @Composable
